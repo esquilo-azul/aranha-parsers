@@ -11,4 +11,6 @@ Gem::Specification.new do |s|
   s.summary     = 'Parsers\' utilities for Ruby.'
 
   s.files = Dir['{lib}/**/*', 'Gemfile']
+
+  s.add_development_dependency 'rspec', '~> 3.8'
 end
