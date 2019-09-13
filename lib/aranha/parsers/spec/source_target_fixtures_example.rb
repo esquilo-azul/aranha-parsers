@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'source_target_fixtures'
+require 'aranha/parsers/source_target_fixtures'
 
 RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable Metrics/BlockLength
   let(:spec_file) { spec_file }
@@ -18,7 +18,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
       it 'should write target data for all files' do
         source_target_fixtures.source_files.each do |source_file|
           sd = sort_results(source_data(source_file))
-          basename = ::Aranha::Spec::SourceTargetFixtures.source_target_basename(source_file)
+          basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(source_file)
           target_file = File.expand_path("../#{basename}.target.yaml", source_file)
           File.write(target_file, sd.to_yaml)
         end
@@ -36,7 +36,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
   end
 
   def source_target_fixtures
-    @source_target_fixtures ||= ::Aranha::Spec::SourceTargetFixtures.new(fixtures_dir)
+    @source_target_fixtures ||= ::Aranha::Parsers::SourceTargetFixtures.new(fixtures_dir)
   end
 
   def assert_source_target_complete(st)

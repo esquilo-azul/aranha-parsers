@@ -4,7 +4,7 @@
 require 'yaml'
 
 module Aranha
-  module Spec
+  module Parsers
     # Lists pairs of source/target files in a directory.
     class SourceTargetFixtures
       class << self
