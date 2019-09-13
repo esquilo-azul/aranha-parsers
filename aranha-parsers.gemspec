@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib}/**/*', 'Gemfile']
 
+  s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.7'
 
   s.add_development_dependency 'rspec', '~> 3.8'
