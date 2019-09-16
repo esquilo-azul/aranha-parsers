@@ -22,7 +22,8 @@ module Aranha
 
       def source_target_files
         sources_targets_basenames.map do |basename|
-          OpenStruct.new(source: source_file(basename), target: target_file(basename))
+          OpenStruct.new(basename: basename, source: source_file(basename),
+                         target: target_file(basename))
         end
       end
 
