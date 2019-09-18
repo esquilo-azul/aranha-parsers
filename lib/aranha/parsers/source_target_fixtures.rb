@@ -1,6 +1,8 @@
 # encoding: UTF-8
 # frozen_string_literal: true
 
+require 'active_support/core_ext/object'
+require 'active_support/core_ext/string'
 require 'yaml'
 
 module Aranha
