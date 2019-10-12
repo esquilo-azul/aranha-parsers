@@ -27,6 +27,10 @@ module Aranha
             raise "String blank (Xpath: #{xpath})"
           end
 
+          def string_recursive_optional_value(node, xpath)
+            string_recursive_value(node, xpath, false)
+          end
+
           def quoted_value(node, xpath)
             s = string_value(node, xpath)
             return '' unless s
