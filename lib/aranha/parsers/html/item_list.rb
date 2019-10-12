@@ -7,6 +7,10 @@ module Aranha
     module Html
       class ItemList < Base
         def data
+          items_data
+        end
+
+        def items_data
           count = 0
           @data ||= nokogiri.xpath(items_xpath).map do |m|
             count += 1
