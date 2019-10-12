@@ -81,7 +81,7 @@ module Aranha
             s = string_value(node, xpath)
             m = /\d+(?:[\.\,](\d+))?/.match(s)
             if m
-              m[0].sub(',', '.').to_f
+              m[0].delete('.').tr(',', '.').to_f
             elsif required
               raise "Float value not found in \"#{s}\""
             end
