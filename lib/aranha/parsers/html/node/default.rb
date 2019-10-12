@@ -9,7 +9,7 @@ module Aranha
         class Default < ::Aranha::Parsers::Html::Node::Base
           def string_value(node, xpath)
             if node.at_xpath(xpath)
-              node.at_xpath(xpath).text.to_s.tr("\u00A0", ' ').strip
+              sanitize_string(node.at_xpath(xpath).text)
             else
               ''
             end
@@ -85,6 +85,10 @@ module Aranha
             elsif required
               raise "Float value not found in \"#{s}\""
             end
+          end
+
+          def sanitize_string(obj)
+            obj.to_s.tr("\u00A0", ' ').strip
           end
         end
       end
