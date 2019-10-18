@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'addressable'
-require 'net/http'
+require 'curb'
 
 module Aranha
   module Parsers
@@ -32,28 +32,14 @@ module Aranha
         end
 
         def content
-          content_fetch(url)
+          c = ::Curl::Easy.new(url)
+          raise "Curl perform failed (URL: #{url})" unless c.perform
+          return c.body_str if c.status.to_i == 200
+          raise "Get #{url} returned #{c.status.to_i}"
         end
 
         def serialize
           url
-        end
-
-        private
-
-        def content_fetch(uri, limit = 10)
-          raise 'too many HTTP redirects' if limit.zero?
-
-          response = Net::HTTP.get_response(URI(uri))
-
-          case response
-          when Net::HTTPSuccess then
-            response.body
-          when Net::HTTPRedirection then
-            content_fetch(self.class.location_uri(uri, response['location']), limit - 1)
-          else
-            response.value
-          end
         end
       end
     end
