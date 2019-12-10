@@ -21,7 +21,7 @@ module Aranha
         end
 
         def items_xpath
-          raise "Class #{self.class} has no method \"item_xpath\". Implement it"
+          raise "Class #{self.class} has no method \"#{__method__}\". Implement it"
         end
       end
     end
