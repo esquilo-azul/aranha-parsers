@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # frozen_string_literal: true
 
 require 'active_support/core_ext/object'
@@ -50,7 +49,7 @@ module Aranha
       def fixture_file(basename, suffix)
         prefix = "#{basename}.#{suffix}"
         Dir.foreach(fixtures_directory) do |item|
-          next if item == '.' || item == '..'
+          next if %w[. ..].include?(item)
           return File.expand_path(item, fixtures_directory) if item.starts_with?(prefix)
         end
         nil
@@ -59,7 +58,8 @@ module Aranha
       def sources_targets_basenames
         basenames = Set.new
         Dir.foreach(fixtures_directory) do |item|
-          next if item == '.' || item == '..'
+          next if %w[. ..].include?(item)
+
           b = self.class.source_target_basename(item)
           basenames << b if b.present?
         end

@@ -30,12 +30,14 @@ module Aranha
         path = log_file(suffix)
 
         return unless path
+
         File.open(path, 'wb') { |file| file.write(content) }
       end
 
       def log_file(suffix)
         dir = log_parsers_dir
         return nil unless dir
+
         f = ::File.join(dir, "#{self.class.name.parameterize}#{suffix}.log")
         FileUtils.mkdir_p(File.dirname(f))
         f
@@ -44,6 +46,7 @@ module Aranha
       def log_parsers_dir
         return ENV[LOG_DIR_ENVVAR] if ENV[LOG_DIR_ENVVAR]
         return ::Rails.root.join('log', 'parsers') if rails_root_exist?
+
         nil
       end
 
@@ -51,7 +54,7 @@ module Aranha
         ::Rails.root
         true
       rescue NameError
-        return false
+        false
       end
     end
   end

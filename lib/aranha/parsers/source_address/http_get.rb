@@ -36,6 +36,7 @@ module Aranha
           c.follow_location = true
           raise "Curl perform failed (URL: #{url})" unless c.perform
           return c.body_str if c.status.to_i == 200
+
           raise "Get #{url} returned #{c.status.to_i}"
         end
 

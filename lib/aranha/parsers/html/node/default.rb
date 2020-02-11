@@ -19,11 +19,13 @@ module Aranha
             root = node.at_xpath(xpath)
             if root.blank?
               return nil unless required
+
               raise "No node found (Xpath: #{xpath})"
             end
             result = string_recursive(root)
-            return result unless result.blank?
+            return result if result.present?
             return nil unless required
+
             raise "String blank (Xpath: #{xpath})"
           end
 
@@ -109,6 +111,7 @@ module Aranha
 
           def string_recursive(node)
             return sanitize_string(node.text) if node.is_a?(::Nokogiri::XML::Text)
+
             s = ''
             node.children.each do |child|
               child_s = string_recursive(child)

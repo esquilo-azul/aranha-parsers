@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aranha/parsers/source_target_fixtures'
 
 RSpec.describe ::Aranha::Parsers::SourceTargetFixtures do

@@ -14,6 +14,7 @@ module Aranha
           @item_node ||= begin
             r = item_xpath ? nokogiri.at_xpath(item_xpath) : nokogiri
             raise "Item node not found (Item xpath: #{item_xpath})" unless r
+
             r
           end
         end

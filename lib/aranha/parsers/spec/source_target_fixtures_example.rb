@@ -10,12 +10,12 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
   end
 
   context 'in fixtures directory' do
-    it 'should have at least one file' do
-      expect(source_target_fixtures.source_target_files.count).to be > 0
+    it 'has at least one file' do
+      expect(source_target_fixtures.source_target_files.count).to be > 0 # rubocop:disable Style/NumericPredicate
     end
 
     if ENV['WRITE_TARGET_FIXTURES']
-      it 'should write target data for all files' do
+      it 'writes target data for all files' do
         source_target_fixtures.source_files.each do |source_file|
           sd = sort_results(source_data(source_file))
           basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(source_file)
@@ -24,7 +24,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
         end
       end
     else
-      it 'should parse data for all files' do
+      it 'parses data for all files' do
         source_target_fixtures.source_target_files.each do |st|
           assert_source_target_complete(st)
           sd = source_data(st.source)
@@ -39,9 +39,9 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
     @source_target_fixtures ||= ::Aranha::Parsers::SourceTargetFixtures.new(fixtures_dir)
   end
 
-  def assert_source_target_complete(st)
-    expect(st.source).to(be_truthy, "Source not found (Target: #{st.target})")
-    expect(st.target).to(be_truthy, "Target not found (Source: #{st.source})")
+  def assert_source_target_complete(source_target)
+    expect(source_target.source).to(be_truthy, "Source not found (Target: #{source_target.target})")
+    expect(source_target.target).to(be_truthy, "Target not found (Source: #{source_target.source})")
   end
 
   def source_data(source_file)
@@ -55,7 +55,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
     )
   end
 
-  def sort_results(r)
-    r
+  def sort_results(results)
+    results
   end
 end
