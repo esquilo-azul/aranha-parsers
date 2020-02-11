@@ -20,6 +20,7 @@ module Aranha
 
         def detect_sub(source)
           return source.sub if source.is_a?(self)
+
           SUBS.each do |sub|
             return sub.new(source) if sub.valid_source?(source)
           end
@@ -27,7 +28,7 @@ module Aranha
         end
 
         def deserialize(string)
-          new(string =~ %r{\A[a-z]+://} ? string.strip : ::YAML.load(string))
+          new(string =~ %r{\A[a-z]+://} ? string.strip : ::YAML.load(string)) # rubocop:disable Security/YAMLLoad
         end
 
         def from_file(path)
