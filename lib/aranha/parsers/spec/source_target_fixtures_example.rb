@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'aranha/parsers/source_target_fixtures'
+require 'yaml'
 
 RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable Metrics/BlockLength
   let(:spec_file) { spec_file }
@@ -9,7 +10,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
     expect(::File.directory?(fixtures_dir)).to be true
   end
 
-  context 'in fixtures directory' do
+  context 'with fixtures directory' do
     it 'has at least one file' do
       expect(source_target_fixtures.source_target_files.count).to be > 0 # rubocop:disable Style/NumericPredicate
     end
@@ -28,7 +29,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
         source_target_fixtures.source_target_files.each do |st|
           assert_source_target_complete(st)
           sd = source_data(st.source)
-          td = YAML.load_file(st.target)
+          td = target_data(st.target)
           expect(sort_results(sd)).to eq(sort_results(td))
         end
       end
@@ -57,5 +58,9 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
 
   def sort_results(results)
     results
+  end
+
+  def target_data(target_file)
+    ::YAML.load_file(target_file)
   end
 end

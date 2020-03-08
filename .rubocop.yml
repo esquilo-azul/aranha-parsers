@@ -13,6 +13,10 @@ Metrics/BlockLength:
     - '**/*.gemspec'
     - 'spec/**/*_spec.rb'
 
+RSpec/ExampleLength:
+  Exclude:
+    - lib/aranha/parsers/spec/source_target_fixtures_example.rb
+
 Style/Documentation:
   Enabled: false
 
