@@ -36,6 +36,14 @@ module Aranha
         r
       end
 
+      def target_files
+        r = []
+        source_target_files.each do |st|
+          r << st.target if st.target
+        end
+        r
+      end
+
       def target_file(basename)
         fixture_file(basename, 'target')
       end
