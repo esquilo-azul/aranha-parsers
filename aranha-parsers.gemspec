@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'curb', '~> 0.9.10'
   s.add_dependency 'httpclient', '~> 2.8', '>= 2.8.3'
 
-  s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.1'
 end
