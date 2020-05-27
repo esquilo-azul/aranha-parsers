@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/require_sub'
+
 module Aranha
   module Parsers
     module Html
       module Node
-        require 'aranha/parsers/html/node/base'
-        require 'aranha/parsers/html/node/default'
+        ::EacRubyUtils.require_sub __FILE__
       end
     end
   end

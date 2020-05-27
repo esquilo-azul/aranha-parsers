@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-require 'yaml'
 require 'active_support/core_ext/module/delegation'
-require 'aranha/parsers/source_address/hash_http_get'
-require 'aranha/parsers/source_address/hash_http_post'
-require 'aranha/parsers/source_address/http_get'
-require 'aranha/parsers/source_address/file'
+require 'eac_ruby_utils/require_sub'
+require 'yaml'
 
 module Aranha
   module Parsers
     class SourceAddress
+      ::EacRubyUtils.require_sub __FILE__
+
       class << self
         SUBS = [
           ::Aranha::Parsers::SourceAddress::HashHttpGet,
