@@ -3,10 +3,22 @@
 require 'open-uri'
 require 'fileutils'
 require 'aranha/parsers/source_address'
+require 'eac_ruby_utils/fs/temp'
 
 module Aranha
   module Parsers
     class Base
+      class << self
+        def from_content(content)
+          ::EacRubyUtils::Fs::Temp.on_file do |path|
+            path.write(content)
+            r = new(path.to_path)
+            r.content
+            r
+          end
+        end
+      end
+
       LOG_DIR_ENVVAR = 'ARANHA_PARSERS_LOG_DIR'
 
       attr_reader :source_address
