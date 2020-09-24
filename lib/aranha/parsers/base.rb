@@ -17,6 +17,10 @@ module Aranha
             r
           end
         end
+
+        def parse_content(content)
+          from_content(content).data
+        end
       end
 
       LOG_DIR_ENVVAR = 'ARANHA_PARSERS_LOG_DIR'
