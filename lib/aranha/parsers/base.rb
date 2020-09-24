@@ -19,9 +19,11 @@ module Aranha
       delegate :url, to: :source_address
 
       def content
-        s = source_address.content
-        log_content(s)
-        s
+        @content ||= begin
+          s = source_address.content
+          log_content(s)
+          s
+        end
       end
 
       private
