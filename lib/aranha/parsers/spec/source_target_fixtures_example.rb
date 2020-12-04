@@ -21,7 +21,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
           sd = sort_results(source_data(source_file))
           basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(source_file)
           target_file = File.expand_path("../#{basename}.target#{target_file_extname}", source_file)
-          File.write(target_file, sd.to_yaml)
+          File.write(target_file, target_content(sd))
         end
       end
     else
@@ -66,6 +66,10 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
 
   def target_data(target_file)
     ::YAML.load_file(target_file)
+  end
+
+  def target_content(data)
+    data.to_yaml
   end
 
   def target_file_extname
