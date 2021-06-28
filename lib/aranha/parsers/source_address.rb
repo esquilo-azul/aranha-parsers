@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/module/delegation'
-require 'eac_ruby_utils/require_sub'
+require 'eac_ruby_utils/core_ext'
 require 'yaml'
 
 module Aranha
   module Parsers
     class SourceAddress
-      ::EacRubyUtils.require_sub __FILE__
+      require_sub __FILE__
 
       class << self
         SUBS = [
@@ -35,12 +35,8 @@ module Aranha
         end
       end
 
-      attr_reader :sub
-
-      def initialize(source)
-        @sub = self.class.detect_sub(source)
-      end
-
+      enable_simple_cache
+      common_constructor :source
       delegate :content, :url, to: :sub
 
       def to_s
@@ -49,6 +45,12 @@ module Aranha
 
       def serialize
         sub.serialize.strip + "\n"
+      end
+
+      private
+
+      def sub_uncached
+        self.class.detect_sub(source)
       end
     end
   end
