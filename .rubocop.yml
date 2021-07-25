@@ -15,7 +15,7 @@ Metrics/BlockLength:
 
 RSpec/ExampleLength:
   Exclude:
-    - lib/aranha/parsers/spec/source_target_fixtures_example.rb
+    - lib/aranha/parsers/rspec/source_target_fixtures_example.rb
 
 Style/Documentation:
   Enabled: false
