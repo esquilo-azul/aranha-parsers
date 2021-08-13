@@ -5,10 +5,8 @@ require 'eac_ruby_utils/core_ext'
 module Aranha
   module Parsers
     module Rspec
-      class Setup
-        common_constructor :setup_obj
-
-        def perform
+      module Setup
+        def self.perform(_setup_obj)
           require 'aranha/parsers/rspec/source_target_fixtures_example'
         end
       end
