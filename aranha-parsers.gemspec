@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'httpclient', '~> 2.8', '>= 2.8.3'
   s.add_dependency 'ofx-parser', '~> 1.1.0'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.3', '>= 0.3.2'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.3', '>= 0.3.3'
 end
