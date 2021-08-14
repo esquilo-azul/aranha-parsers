@@ -6,7 +6,7 @@ module Aranha
   module Parsers
     module Rspec
       module Setup
-        def self.perform(_setup_obj)
+        def self.extended(_setup_obj)
           require 'aranha/parsers/rspec/source_target_fixtures_example'
         end
       end
