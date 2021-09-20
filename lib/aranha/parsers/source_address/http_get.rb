@@ -2,6 +2,7 @@
 
 require 'addressable'
 require 'curb'
+require 'aranha/parsers/source_address/fetch_content_error'
 
 module Aranha
   module Parsers
@@ -34,14 +35,26 @@ module Aranha
         def content
           c = ::Curl::Easy.new(url)
           c.follow_location = true
-          raise "Curl perform failed (URL: #{url})" unless c.perform
+          curl_perform(c)
           return c.body_str if c.status.to_i == 200
 
-          raise "Get #{url} returned #{c.status.to_i}"
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError,
+                "Get #{url} returned #{c.status.to_i}"
         end
 
         def serialize
           url
+        end
+
+        private
+
+        def curl_perform(curl)
+          unless curl.perform
+            raise(::Aranha::Parsers::SourceAddress::FetchContentError,
+                  "Curl perform failed (URL: #{url})")
+          end
+        rescue Curl::Err::CurlError => e
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError, "CURL error: #{e.class.name}"
         end
       end
     end
