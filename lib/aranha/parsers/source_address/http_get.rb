@@ -32,6 +32,11 @@ module Aranha
           source
         end
 
+        def final_url
+          content unless @final_url
+          @final_url
+        end
+
         def content
           c = ::Curl::Easy.new(url)
           c.follow_location = true
@@ -53,6 +58,7 @@ module Aranha
             raise(::Aranha::Parsers::SourceAddress::FetchContentError,
                   "Curl perform failed (URL: #{url})")
           end
+          @final_url = curl.url
         rescue Curl::Err::CurlError => e
           raise ::Aranha::Parsers::SourceAddress::FetchContentError, "CURL error: #{e.class.name}"
         end
