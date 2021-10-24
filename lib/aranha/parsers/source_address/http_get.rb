@@ -3,6 +3,7 @@
 require 'addressable'
 require 'curb'
 require 'aranha/parsers/source_address/fetch_content_error'
+require 'faraday_middleware'
 
 module Aranha
   module Parsers
@@ -38,10 +39,12 @@ module Aranha
         end
 
         def content
-          c = ::Curl::Easy.new(url)
-          c.follow_location = true
-          curl_perform(c)
-          return c.body_str if c.status.to_i == 200
+          conn = ::Faraday.new do |f|
+            f.request :retry # retry transient failures
+            f.response :follow_redirects # follow redirects
+          end
+          c = conn.get(url)
+          return c.body if c.status == 200
 
           raise ::Aranha::Parsers::SourceAddress::FetchContentError,
                 "Get #{url} returned #{c.status.to_i}"
@@ -49,18 +52,6 @@ module Aranha
 
         def serialize
           url
-        end
-
-        private
-
-        def curl_perform(curl)
-          unless curl.perform
-            raise(::Aranha::Parsers::SourceAddress::FetchContentError,
-                  "Curl perform failed (URL: #{url})")
-          end
-          @final_url = curl.url
-        rescue Curl::Err::CurlError => e
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError, "CURL error: #{e.class.name}"
         end
       end
     end
