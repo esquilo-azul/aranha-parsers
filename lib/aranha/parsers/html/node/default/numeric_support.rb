@@ -33,6 +33,14 @@ module Aranha
               parse_float(node, xpath, false)
             end
 
+            def us_decimal_value(node, xpath)
+              parse_us_decimal(node, xpath, true)
+            end
+
+            def us_decimal_optional_value(node, xpath)
+              parse_us_decimal(node, xpath, false)
+            end
+
             private
 
             def parse_float(node, xpath, required)
@@ -42,6 +50,16 @@ module Aranha
                 m[0].delete('.').tr(',', '.').to_f
               elsif required
                 raise "Float value not found in \"#{s}\""
+              end
+            end
+
+            def parse_us_decimal(node, xpath, required)
+              s = string_value(node, xpath)
+              m = /\d+(?:[\.\,](\d+))?/.match(s)
+              if m
+                m[0].delete(',').to_f
+              elsif required
+                raise "US decimal value not found in \"#{s}\""
               end
             end
           end
