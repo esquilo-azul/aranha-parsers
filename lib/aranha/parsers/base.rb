@@ -38,11 +38,14 @@ module Aranha
 
       def content
         @content ||= begin
-          s = source_address.content
+          s = source_address_content
           log_content(s)
           s
         end
       end
+
+      # @return [String]
+      delegate :content, to: :source_address, prefix: true
 
       private
 
