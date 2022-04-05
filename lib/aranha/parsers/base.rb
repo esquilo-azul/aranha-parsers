@@ -37,11 +37,7 @@ module Aranha
       delegate :url, to: :source_address
 
       def content
-        @content ||= begin
-          s = source_address_content
-          log_content(s)
-          s
-        end
+        @content ||= log_content(source_address_content)
       end
 
       # @return [String]
@@ -49,12 +45,13 @@ module Aranha
 
       private
 
+      # @return [String]
       def log_content(content, suffix = '')
         path = log_file(suffix)
 
-        return unless path
+        File.open(path, 'wb') { |file| file.write(content) } if path
 
-        File.open(path, 'wb') { |file| file.write(content) }
+        content
       end
 
       def log_file(suffix)
