@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash/indifferent_access'
 require 'aranha/parsers/source_address/hash_http_base'
+require 'eac_ruby_utils/core_ext'
 require 'httpclient'
 require 'yaml'
 
@@ -20,15 +20,10 @@ module Aranha
           end
         end
 
-        attr_reader :source
-
-        def initialize(source)
-          @source = source.with_indifferent_access
+        common_constructor :source do
+          self.source = source.with_indifferent_access
         end
-
-        def ==(other)
-          self.class == other.class && source == other.source
-        end
+        compare_by :source
 
         def url
           source.fetch(:url)
