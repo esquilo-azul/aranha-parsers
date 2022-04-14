@@ -20,6 +20,8 @@ module Aranha
           end
         end
 
+        DEFAULT_PARAMS = {}.freeze
+
         common_constructor :source do
           self.source = source.with_indifferent_access
         end
@@ -28,7 +30,7 @@ module Aranha
         def http_client_params
           [
             url,
-            source[:params].merge(follow_redirect: true)
+            params.merge(follow_redirect: true)
           ]
         end
 
@@ -42,6 +44,10 @@ module Aranha
 
         def content
           HTTPClient.new.send("#{self.class.http_method}_content", *http_client_params)
+        end
+
+        def params
+          source[:params].if_present(DEFAULT_PARAMS)
         end
       end
     end
