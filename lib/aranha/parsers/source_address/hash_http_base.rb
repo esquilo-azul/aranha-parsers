@@ -20,6 +20,7 @@ module Aranha
           end
         end
 
+        DEFAULT_FOLLOW_REDIRECT = true
         DEFAULT_PARAMS = {}.freeze
 
         common_constructor :source do
@@ -27,10 +28,14 @@ module Aranha
         end
         compare_by :source
 
+        def follow_redirect?
+          param(:follow_redirect, DEFAULT_FOLLOW_REDIRECT)
+        end
+
         def http_client_params
           [
             url,
-            params.merge(follow_redirect: true)
+            params.merge(follow_redirect: follow_redirect?)
           ]
         end
 
@@ -44,6 +49,10 @@ module Aranha
 
         def content
           HTTPClient.new.send("#{self.class.http_method}_content", *http_client_params)
+        end
+
+        def param(key, default_value)
+          source[key] || params[key] || default_value
         end
 
         def params
