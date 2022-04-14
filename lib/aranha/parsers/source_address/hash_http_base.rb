@@ -25,6 +25,13 @@ module Aranha
         end
         compare_by :source
 
+        def http_client_params
+          [
+            url,
+            source[:params].merge(follow_redirect: true)
+          ]
+        end
+
         def url
           source.fetch(:url)
         end
@@ -34,11 +41,7 @@ module Aranha
         end
 
         def content
-          HTTPClient.new.send(
-            "#{self.class.http_method}_content",
-            source[:url],
-            source[:params].merge(follow_redirect: true)
-          )
+          HTTPClient.new.send("#{self.class.http_method}_content", *http_client_params)
         end
       end
     end
