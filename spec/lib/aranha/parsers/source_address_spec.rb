@@ -6,7 +6,7 @@ RSpec.describe ::Aranha::Parsers::SourceAddress do
   describe '#detect_sub' do
     {
       { method: :post, url: 'http://postdata.net', params: { key1: :value1 } } => {
-        klass: ::Aranha::Parsers::SourceAddress::HashHttpPost,
+        klass: ::Aranha::Parsers::SourceAddress::HashHttpBase,
         url: 'http://postdata.net',
         serialization: <<~SERIALIZATION
           --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
@@ -17,7 +17,7 @@ RSpec.describe ::Aranha::Parsers::SourceAddress do
         SERIALIZATION
       },
       { method: :get, url: 'http://getdata.net', params: { headers: %w[abc] } } => {
-        klass: ::Aranha::Parsers::SourceAddress::HashHttpPost,
+        klass: ::Aranha::Parsers::SourceAddress::HashHttpBase,
         url: 'http://getdata.net',
         serialization: <<~SERIALIZATION
           --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
