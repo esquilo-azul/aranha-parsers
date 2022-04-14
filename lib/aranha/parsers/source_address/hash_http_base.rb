@@ -20,6 +20,7 @@ module Aranha
           end
         end
 
+        DEFAULT_BODY = ''
         DEFAULT_FOLLOW_REDIRECT = true
         DEFAULT_PARAMS = {}.freeze
 
@@ -28,6 +29,10 @@ module Aranha
         end
         compare_by :source
 
+        def body
+          param(:body, DEFAULT_BODY)
+        end
+
         def follow_redirect?
           param(:follow_redirect, DEFAULT_FOLLOW_REDIRECT)
         end
@@ -35,7 +40,7 @@ module Aranha
         def http_client_params
           [
             url,
-            params.merge(follow_redirect: follow_redirect?)
+            params.merge(body: body, follow_redirect: follow_redirect?)
           ]
         end
 
