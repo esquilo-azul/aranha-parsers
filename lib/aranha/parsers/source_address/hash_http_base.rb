@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require 'aranha/parsers/source_address/fetch_content_error'
 require 'aranha/parsers/source_address/hash_http_base'
 require 'eac_ruby_utils/core_ext'
-require 'httpclient'
+require 'faraday_middleware'
 require 'yaml'
 
 module Aranha
@@ -42,13 +43,6 @@ module Aranha
           param(:headers, DEFAULT_HEADERS)
         end
 
-        def http_client_params
-          [
-            url,
-            params.merge(body: body, headers: headers, follow_redirect: follow_redirect?)
-          ]
-        end
-
         def url
           source.fetch(:url)
         end
@@ -57,8 +51,26 @@ module Aranha
           source.to_yaml
         end
 
+        # @return [Faraday]
+        def faraday_connection
+          ::Faraday.new do |f|
+            f.response :follow_redirects if follow_redirect?
+          end
+        end
+
+        def faraday_request
+          faraday_connection.send(self.class.http_method, url) do |req|
+            headers.if_present { |v| req.headers = v }
+            body.if_present { |v| req.body = v }
+          end
+        end
+
         def content
-          HTTPClient.new.send("#{self.class.http_method}_content", *http_client_params)
+          req = faraday_request
+          return req.body if req.status == 200
+
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError,
+                "Get #{url} returned #{req.status.to_i}"
         end
 
         def param(key, default_value)
