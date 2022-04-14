@@ -10,11 +10,15 @@ module Aranha
           items_data
         end
 
+        def item_data(item)
+          item
+        end
+
         def items_data
           count = 0
           @data ||= nokogiri.xpath(items_xpath).map do |m|
             count += 1
-            node_parser.parse(m)
+            item_data(node_parser.parse(m))
           end
         rescue StandardError => e
           raise StandardError, "#{e.message} (Count: #{count})"
