@@ -22,6 +22,7 @@ module Aranha
 
         DEFAULT_BODY = ''
         DEFAULT_FOLLOW_REDIRECT = true
+        DEFAULT_HEADERS = {}.freeze
         DEFAULT_PARAMS = {}.freeze
 
         common_constructor :source do
@@ -37,10 +38,14 @@ module Aranha
           param(:follow_redirect, DEFAULT_FOLLOW_REDIRECT)
         end
 
+        def headers
+          param(:headers, DEFAULT_HEADERS)
+        end
+
         def http_client_params
           [
             url,
-            params.merge(body: body, follow_redirect: follow_redirect?)
+            params.merge(body: body, headers: headers, follow_redirect: follow_redirect?)
           ]
         end
 
