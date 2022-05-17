@@ -26,6 +26,8 @@ module Aranha
         DEFAULT_HEADERS = {}.freeze
         DEFAULT_PARAMS = {}.freeze
 
+        enable_simple_cache
+
         common_constructor :source do
           self.source = source.with_indifferent_access
         end
@@ -58,13 +60,6 @@ module Aranha
           end
         end
 
-        def faraday_request
-          faraday_connection.send(self.class.http_method, url) do |req|
-            headers.if_present { |v| req.headers = v }
-            body.if_present { |v| req.body = v }
-          end
-        end
-
         def content
           req = faraday_request
           return req.body if req.status == 200
@@ -79,6 +74,15 @@ module Aranha
 
         def params
           source[:params].if_present(DEFAULT_PARAMS)
+        end
+
+        private
+
+        def faraday_request_uncached
+          faraday_connection.send(self.class.http_method, url) do |req|
+            headers.if_present { |v| req.headers = v }
+            body.if_present { |v| req.body = v }
+          end
         end
       end
     end
