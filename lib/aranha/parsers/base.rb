@@ -12,7 +12,7 @@ module Aranha
         def from_content(content)
           ::EacRubyUtils::Fs::Temp.on_file do |path|
             ::File.open(path.to_s, 'w:UTF-8') do |f|
-              f.write content.force_encoding('UTF-8')
+              f.write content.dup.force_encoding('UTF-8')
             end
             r = new(path.to_path)
             r.content
