@@ -4,6 +4,7 @@ require 'aranha/parsers/source_address/fetch_content_error'
 require 'aranha/parsers/source_address/hash_http_base'
 require 'eac_ruby_utils/core_ext'
 require 'faraday_middleware'
+require 'faraday/gzip'
 require 'yaml'
 
 module Aranha
@@ -56,6 +57,7 @@ module Aranha
         # @return [Faraday]
         def faraday_connection
           ::Faraday.new do |f|
+            f.request :gzip
             f.response :follow_redirects if follow_redirect?
           end
         end
