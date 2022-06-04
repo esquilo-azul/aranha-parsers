@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.12', '>= 1.12.4'
   s.add_dependency 'ofx-parser', '~> 1.1.0'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.3', '>= 0.3.3'
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
 end
