@@ -3,19 +3,38 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.4
-
-Layout/LineLength:
-  Max: 100
+  TargetRailsVersion: 5.2
+  TargetRubyVersion: 2.7
 
 Metrics/BlockLength:
   Exclude:
     - '**/*.gemspec'
     - 'spec/**/*_spec.rb'
 
+Layout/LineLength:
+  Max: 100
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
+
 RSpec/ExampleLength:
   Exclude:
     - lib/aranha/parsers/rspec/source_target_fixtures_example.rb
+
+Style/AsciiComments:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
