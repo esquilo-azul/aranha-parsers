@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'Gemfile']
 
   s.add_dependency 'activesupport', '~> 6.1.6', '>= 6.1.6.1'
-  s.add_dependency 'addressable', '~> 2.7'
+  s.add_dependency 'addressable', '~> 2.8', '>= 2.8.1'
   s.add_dependency 'curb', '~> 0.9.10'
   s.add_dependency 'eac_ruby_utils', '~> 0.92', '>= 0.92.1'
   s.add_dependency 'faraday-gzip', '~> 0.1'
