@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Parsers\' utilities for Ruby.'
 
-  s.files = Dir['{lib}/**/*', 'Gemfile']
+  s.files = Dir['{lib}/**/*']
 
   s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.1'
