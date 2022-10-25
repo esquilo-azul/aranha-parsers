@@ -7,6 +7,8 @@ module Aranha
   module Parsers
     # Lists pairs of source/target files in a directory.
     class SourceTargetFixtures
+      require_sub __FILE__
+
       class << self
         def source_target_basename(file)
           m = /^(.+)\.(?:source|target)(?:\..+)?$/.match(File.basename(file))
@@ -22,8 +24,7 @@ module Aranha
 
       def source_target_files
         sources_targets_basenames.map do |basename|
-          OpenStruct.new(basename: basename, source: source_file(basename),
-                         target: target_file(basename))
+          ::Aranha::Parsers::SourceTargetFixtures::SourceTargetFile.new(self, basename)
         end
       end
 
