@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_utils', '~> 0.106'
   s.add_dependency 'faraday-gzip', '~> 0.1'
   s.add_dependency 'faraday_middleware', '~> 1.2'
-  s.add_dependency 'nokogiri', '~> 1.13', '>= 1.13.8'
+  s.add_dependency 'nokogiri', '~> 1.13', '>= 1.13.9'
   s.add_dependency 'ofx-parser', '~> 1.1'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.5.1'
