@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
+require 'aranha/parsers/rspec/source_target_fixtures_controller'
 require 'aranha/parsers/source_target_fixtures'
 require 'yaml'
 
 RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable Metrics/BlockLength
+  fixtures_controller = ::Aranha::Parsers::Rspec::SourceTargetFixturesController
+                          .new(self, spec_file)
+
+  let(:fixtures_controller) { fixtures_controller }
   let(:spec_file) { spec_file }
 
   it 'fixtures directory should exist' do
-    expect(::File.directory?(fixtures_dir)).to be true
+    expect(::File.directory?(fixtures_controller.fixtures_dir)).to be true
   end
 
   context 'with fixtures directory' do
@@ -15,30 +20,28 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
       expect(source_target_fixtures.source_target_files.count).to be > 0 # rubocop:disable Style/NumericPredicate
     end
 
-    if ENV['WRITE_TARGET_FIXTURES']
-      it 'writes target data for all files' do
-        source_target_fixtures.source_files.each do |source_file|
-          sd = sort_results(source_data(source_file))
-          basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(source_file)
-          target_file = File.expand_path("../#{basename}.target#{target_file_extname}", source_file)
-          File.write(target_file, target_content(sd))
-        end
-      end
-    else
-      it 'parses data for all files' do
-        source_target_fixtures.source_target_files.each do |st|
-          assert_source_target_complete(st)
-          sd = source_data(st.source)
-          td = target_data(st.target)
-          expect(sort_results(sd)).to eq(sort_results(td))
+    fixtures_controller.source_target_fixtures.source_target_files.each do |st|
+      context "when source file is \"#{::File.basename(st.source)}\"" do
+        if fixtures_controller.write_target_fixtures?
+          it 'writes target data' do
+            sd = sort_results(source_data(st.source))
+            basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(st.source)
+            target_file = File.expand_path("../#{basename}.target#{target_file_extname}", st.source)
+            File.write(target_file, target_content(sd))
+          end
+        else
+          it 'parses data' do
+            assert_source_target_complete(st)
+            sd = source_data(st.source)
+            td = target_data(st.target)
+            expect(sort_results(sd)).to eq(sort_results(td))
+          end
         end
       end
     end
   end
 
-  def source_target_fixtures
-    @source_target_fixtures ||= ::Aranha::Parsers::SourceTargetFixtures.new(fixtures_dir)
-  end
+  delegate :source_target_fixtures, to: :fixtures_controller
 
   def assert_source_target_complete(source_target)
     expect(source_target.source).to(be_truthy, "Source not found (Target: #{source_target.target})")
@@ -51,13 +54,6 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
 
     raise "#{instance} has no \"data\" method. You need to implement \"#{instance}.data\" or " \
       "\"#{self}.source_data(source_file)\""
-  end
-
-  def fixtures_dir
-    ::File.join(
-      ::File.dirname(spec_file),
-      ::File.basename(spec_file, '.*') + '_files'
-    )
   end
 
   def sort_results(results)
