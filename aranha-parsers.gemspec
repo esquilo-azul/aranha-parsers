@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.1'
-  s.add_dependency 'curb', '~> 0.9', '>= 0.9.11'
   s.add_dependency 'eac_ruby_utils', '~> 0.112'
   s.add_dependency 'faraday-gzip', '~> 0.1'
   s.add_dependency 'faraday_middleware', '~> 1.2'
