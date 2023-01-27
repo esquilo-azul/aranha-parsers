@@ -3,7 +3,7 @@
 require 'aranha/parsers/source_address/fetch_content_error'
 require 'aranha/parsers/source_address/hash_http_base'
 require 'eac_ruby_utils/core_ext'
-require 'faraday_middleware'
+require 'faraday'
 require 'faraday/gzip'
 require 'yaml'
 

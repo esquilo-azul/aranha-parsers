@@ -2,7 +2,7 @@
 
 require 'addressable'
 require 'aranha/parsers/source_address/fetch_content_error'
-require 'faraday_middleware'
+require 'faraday'
 
 module Aranha
   module Parsers
