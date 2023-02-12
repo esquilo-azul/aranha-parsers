@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.1'
   s.add_dependency 'eac_ruby_utils', '~> 0.112'
   s.add_dependency 'faraday', '~> 2.7', '>= 2.7.4'
+  s.add_dependency 'faraday-follow_redirects', '~> 0.3'
   s.add_dependency 'faraday-gzip', '~> 0.1'
   s.add_dependency 'nokogiri', '~> 1.14'
   s.add_dependency 'ofx-parser', '~> 1.1'
