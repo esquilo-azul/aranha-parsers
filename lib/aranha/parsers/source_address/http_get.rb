@@ -3,6 +3,7 @@
 require 'addressable'
 require 'aranha/parsers/source_address/fetch_content_error'
 require 'faraday'
+require 'faraday/retry'
 
 module Aranha
   module Parsers
