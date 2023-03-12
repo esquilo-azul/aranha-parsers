@@ -9,6 +9,20 @@ module Aranha
       module Node
         class Default < ::Aranha::Parsers::Html::Node::Base
           module NumericSupport
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Float]
+            def decimal_dot_value(node, xpath)
+              parse_decimal_dot(node, xpath, true)
+            end
+
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Float, nil]
+            def decimal_dot_optional_value(node, xpath)
+              parse_decimal_dot(node, xpath, false)
+            end
+
             def integer_value(node, xpath)
               r = string_value(node, xpath)
               return nil if r.blank?
@@ -33,18 +47,20 @@ module Aranha
               parse_float(node, xpath, false)
             end
 
+            # @deprecated Use {#decimal_dot_value} instead.
             # @param node [Nokogiri::XML::Element]
             # @param xpath [String]
             # @return [Float]
             def us_decimal_value(node, xpath)
-              parse_decimal_dot(node, xpath, true)
+              decimal_dot_value(node, xpath)
             end
 
+            # @deprecated Use {#decimal_dot_optional_value} instead.
             # @param node [Nokogiri::XML::Element]
             # @param xpath [String]
             # @return [Float, nil]
             def us_decimal_optional_value(node, xpath)
-              parse_decimal_dot(node, xpath, false)
+              decimal_dot_optional_value(node, xpath)
             end
 
             private
@@ -59,7 +75,7 @@ module Aranha
               end
             end
 
-            # @param node
+            # @param node [Nokogiri::XML::Element]
             # @param xpath [String]
             # @param required [Boolean]
             # @param separator [String]
