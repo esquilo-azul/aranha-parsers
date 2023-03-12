@@ -12,6 +12,20 @@ module Aranha
             # @param node [Nokogiri::XML::Element]
             # @param xpath [String]
             # @return [Float]
+            def decimal_comma_value(node, xpath)
+              parse_decimal_comma(node, xpath, true)
+            end
+
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Float, nil]
+            def decimal_comma_optional_value(node, xpath)
+              parse_decimal_comma(node, xpath, false)
+            end
+
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Float]
             def decimal_dot_value(node, xpath)
               parse_decimal_dot(node, xpath, true)
             end
@@ -98,6 +112,14 @@ module Aranha
             # @return [Float, nil]
             def parse_decimal_dot(node, xpath, required)
               parse_decimal(node, xpath, required, '.', ',')
+            end
+
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @param required [Boolean]
+            # @return [Float, nil]
+            def parse_decimal_comma(node, xpath, required)
+              parse_decimal(node, xpath, required, ',', '.')
             end
           end
         end
