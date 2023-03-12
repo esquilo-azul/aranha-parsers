@@ -46,8 +46,9 @@ module Aranha
           c = conn.get(url)
           return c.body if c.status == 200
 
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError,
-                "Get #{url} returned #{c.status.to_i}"
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError.new(
+            "Get #{url} returned #{c.status.to_i}", c
+          )
         end
 
         def serialize

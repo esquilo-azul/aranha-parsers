@@ -67,8 +67,9 @@ module Aranha
           req = faraday_request
           return req.body if req.status == 200
 
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError,
-                "Get #{url} returned #{req.status.to_i}"
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError.new(
+            "Get #{url} returned #{req.status.to_i}", req
+          )
         end
 
         def param(key, default_value)
