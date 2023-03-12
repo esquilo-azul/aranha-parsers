@@ -62,15 +62,26 @@ module Aranha
             # @param node
             # @param xpath [String]
             # @param required [Boolean]
+            # @param separator [String]
+            # @param delimiter [String]
+            # @return [Float, nil]
+            def parse_decimal(node, xpath, required, separator, delimiter)
+              s = string_value(node, xpath)
+              m = /\d+(?:[#{::Regexp.quote(separator + delimiter)}](\d+))?/.match(s)
+              if m
+                m[0].delete(delimiter).to_f
+              elsif required
+                raise "decimal [Separator=\"#{separator}, Delimiter=\"#{delimiter}\"] value not " \
+                  "found in \"#{s}\""
+              end
+            end
+
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @param required [Boolean]
             # @return [Float, nil]
             def parse_decimal_dot(node, xpath, required)
-              s = string_value(node, xpath)
-              m = /\d+(?:[\.\,](\d+))?/.match(s)
-              if m
-                m[0].delete(',').to_f
-              elsif required
-                raise "US decimal value not found in \"#{s}\""
-              end
+              parse_decimal(node, xpath, required, '.', ',')
             end
           end
         end
