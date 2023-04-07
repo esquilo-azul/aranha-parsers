@@ -1,0 +1,10 @@
+---
+ssl: false
+method: GET
+uri: "/"
+body: 
+headers:
+  accept-encoding: gzip,deflate
+  accept: "*/*"
+  user-agent: Ruby
+  host: localhost:8080
