@@ -2,8 +2,8 @@
 
 require 'addressable'
 require 'aranha/parsers/source_address/fetch_content_error'
-require 'faraday'
-require 'faraday/retry'
+require 'eac_envs/http/error'
+require 'eac_envs/http/request'
 
 module Aranha
   module Parsers
@@ -39,16 +39,10 @@ module Aranha
         end
 
         def content
-          conn = ::Faraday.new do |f|
-            f.request :retry # retry transient failures
-            f.response :follow_redirects # follow redirects
-          end
-          c = conn.get(url)
-          return c.body if c.status == 200
-
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError.new(
-            "Get #{url} returned #{c.status.to_i}", c
-          )
+          request = ::EacEnvs::Http::Request.new.url(url).retry(true).follow_redirect(true)
+          request.response.body_str
+        rescue ::EacEnvs::Http::Error => e
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError, e.message, request
         end
 
         def serialize
