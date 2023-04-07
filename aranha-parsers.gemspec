@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.3'
+  s.add_dependency 'eac_envs-http', '~> 0.3'
   s.add_dependency 'eac_ruby_utils', '~> 0.112'
   s.add_dependency 'faraday', '~> 2.7', '>= 2.7.4'
   s.add_dependency 'faraday-follow_redirects', '~> 0.3'
