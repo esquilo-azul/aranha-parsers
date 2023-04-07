@@ -2,10 +2,9 @@
 
 require 'aranha/parsers/source_address/fetch_content_error'
 require 'aranha/parsers/source_address/hash_http_base'
+require 'eac_envs/http/error'
+require 'eac_envs/http/request'
 require 'eac_ruby_utils/core_ext'
-require 'faraday'
-require 'faraday/follow_redirects'
-require 'faraday/gzip'
 require 'yaml'
 
 module Aranha
@@ -55,21 +54,11 @@ module Aranha
           source.to_yaml
         end
 
-        # @return [Faraday]
-        def faraday_connection
-          ::Faraday.new do |f|
-            f.request :gzip
-            f.response :follow_redirects if follow_redirect?
-          end
-        end
-
         def content
-          req = faraday_request
-          return req.body if req.status == 200
-
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError.new(
-            "Get #{url} returned #{req.status.to_i}", req
-          )
+          request = http_request
+          request.response.body_str
+        rescue ::EacEnvs::Http::Error => e
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError, e.message, request
         end
 
         def param(key, default_value)
@@ -82,11 +71,13 @@ module Aranha
 
         private
 
-        def faraday_request_uncached
-          faraday_connection.send(self.class.http_method, url) do |req|
-            headers.if_present { |v| req.headers = v }
-            body.if_present { |v| req.body = v }
-          end
+        # @return [EacEnvs::Http::Request]
+        def http_request
+          r = ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
+          r = headers.if_present(r) { |v| r.headers(v) }
+          r = body.if_present(r) { |v| r.body(v) }
+          r = r.follow_redirect(true) if follow_redirect?
+          r
         end
       end
     end
