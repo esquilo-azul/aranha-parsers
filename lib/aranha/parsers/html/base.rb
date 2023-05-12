@@ -19,6 +19,20 @@ module Aranha
             @fields << Field.new(name, type, xpath)
           end
 
+          # @param node [Nokogiri::XML::Node]
+          # @return [Aranha::Parsers::Html::Base]
+          def from_node(node)
+            from_string(node.to_html)
+          end
+
+          # @param haystack [String]
+          # @param needle [String]
+          # @return [String]
+          def xpath_ends_with(haystack, needle)
+            "substring(#{haystack}, string-length(#{haystack}) - string-length(#{needle}) + 1) " \
+              "= #{needle}"
+          end
+
           Field = Struct.new(:name, :type, :xpath)
         end
 
