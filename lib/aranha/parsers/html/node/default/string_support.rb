@@ -27,12 +27,12 @@ module Aranha
               raise "Pattern \"#{pattern}\" not found in string \"#{s}\""
             end
 
+            # @param node [Nokogiri::XML::Node]
+            # @param xpath [String]
+            # @return [String]
             def string_value(node, xpath)
-              if node.at_xpath(xpath)
-                sanitize_string(node.at_xpath(xpath).text)
-              else
-                ''
-              end
+              found = node.at_xpath(xpath)
+              found ? sanitize_string(found.text) : ''
             end
 
             def string_recursive_value(node, xpath, required = true)
