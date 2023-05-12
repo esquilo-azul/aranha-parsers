@@ -9,19 +9,28 @@ module Aranha
   module Parsers
     class Base
       class << self
+        # @deprecated Use {#from_string} instead.
+        # @param content [String]
+        # @return [Aranha::Parsers::Base]
         def from_content(content)
+          from_string(content)
+        end
+
+        def parse_content(content)
+          from_content(content).data
+        end
+
+        # @param string [String]
+        # @return [Aranha::Parsers::Base]
+        def from_string(string)
           ::EacRubyUtils::Fs::Temp.on_file do |path|
             ::File.open(path.to_s, 'w:UTF-8') do |f|
-              f.write content.dup.force_encoding('UTF-8')
+              f.write string.dup.force_encoding('UTF-8')
             end
             r = new(path.to_path)
             r.content
             r
           end
-        end
-
-        def parse_content(content)
-          from_content(content).data
         end
       end
 
