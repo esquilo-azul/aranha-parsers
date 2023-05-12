@@ -27,6 +27,13 @@ module Aranha
             m = /(\d+) m/.match(join_value(node, xpath))
             m ? m[1].to_i : nil
           end
+
+          # @param node [Nokogiri::XML::Node]
+          # @param xpath [String]
+          # @return [Nokogiri::XML::Node]
+          def node_value(node, xpath)
+            node.at_xpath(xpath)
+          end
         end
       end
     end

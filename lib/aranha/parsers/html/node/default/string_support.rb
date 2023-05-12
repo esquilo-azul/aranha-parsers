@@ -31,12 +31,12 @@ module Aranha
             # @param xpath [String]
             # @return [String]
             def string_value(node, xpath)
-              found = node.at_xpath(xpath)
+              found = node_value(node, xpath)
               found ? sanitize_string(found.text) : ''
             end
 
             def string_recursive_value(node, xpath, required = true)
-              root = node.at_xpath(xpath)
+              root = node_value(node, xpath)
               if root.blank?
                 return nil unless required
 
