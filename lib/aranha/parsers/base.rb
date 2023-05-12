@@ -16,10 +16,6 @@ module Aranha
           from_string(content)
         end
 
-        def parse_content(content)
-          from_content(content).data
-        end
-
         # @param string [String]
         # @return [Aranha::Parsers::Base]
         def from_string(string)
