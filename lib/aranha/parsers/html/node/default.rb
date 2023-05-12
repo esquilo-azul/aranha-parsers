@@ -11,13 +11,13 @@ module Aranha
           require_sub __FILE__, include_modules: true
 
           def array_value(node, xpath)
-            r = node.xpath(xpath).map { |n| n.text.strip }
+            r = node_set_value(node, xpath).map { |n| n.text.strip }
             r.join('|')
           end
 
           def join_value(node, xpath)
             m = ''
-            node.xpath(xpath).each do |n|
+            node_set_value(node, xpath).each do |n|
               m << n.text.strip
             end
             m
@@ -26,6 +26,13 @@ module Aranha
           def duration_value(node, xpath)
             m = /(\d+) m/.match(join_value(node, xpath))
             m ? m[1].to_i : nil
+          end
+
+          # @param node [Nokogiri::XML::Node]
+          # @param xpath [String]
+          # @return [Nokogiri::XML::NodeSet]
+          def node_set_value(node, xpath)
+            node.xpath(xpath)
           end
 
           # @param node [Nokogiri::XML::Node]
