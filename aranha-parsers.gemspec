@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.8', '>= 2.8.4'
   s.add_dependency 'eac_envs-http', '~> 0.3', '>= 0.3.1'
-  s.add_dependency 'eac_ruby_utils', '~> 0.112'
+  s.add_dependency 'eac_ruby_utils', '~> 0.116'
   s.add_dependency 'nokogiri', '~> 1.14', '>= 1.14.2'
   s.add_dependency 'ofx-parser', '~> 1.1'
 
