@@ -10,11 +10,6 @@ module Aranha
         class Default < ::Aranha::Parsers::Html::Node::Base
           require_sub __FILE__, include_modules: true
 
-          def array_value(node, xpath)
-            r = node_set_value(node, xpath).map { |n| n.text.strip }
-            r.join('|')
-          end
-
           def join_value(node, xpath)
             m = ''
             node_set_value(node, xpath).each do |n|
