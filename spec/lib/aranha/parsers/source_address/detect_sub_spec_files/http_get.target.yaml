@@ -2,9 +2,9 @@
 ssl: false
 method: GET
 uri: "/"
-body: 
+body:
 headers:
-  user-agent: Faraday v2.7.4
+  user-agent: Faraday v2.7.5
   accept-encoding: gzip,deflate
   accept: "*/*"
   host: localhost:8080

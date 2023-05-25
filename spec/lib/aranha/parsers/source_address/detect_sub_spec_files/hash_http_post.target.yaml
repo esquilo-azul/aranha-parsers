@@ -2,9 +2,9 @@
 ssl: false
 method: POST
 uri: "/"
-body: 
+body:
 headers:
-  user-agent: Faraday v2.7.4
+  user-agent: Faraday v2.7.5
   accept-encoding: gzip,deflate
   content-length: '0'
   accept: "*/*"
