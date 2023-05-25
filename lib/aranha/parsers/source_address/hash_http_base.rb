@@ -75,7 +75,7 @@ module Aranha
         def http_request
           r = ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
           r = headers.if_present(r) { |v| r.headers(v) }
-          r = body.if_present(r) { |v| r.body(v) }
+          r = body.if_present(r) { |v| r.body_data(v) }
           r = r.follow_redirect(true) if follow_redirect?
           r
         end
