@@ -18,11 +18,6 @@ module Aranha
             m
           end
 
-          def duration_value(node, xpath)
-            m = /(\d+) m/.match(join_value(node, xpath))
-            m ? m[1].to_i : nil
-          end
-
           # @param node [Nokogiri::XML::Node]
           # @param xpath [String]
           # @return [Nokogiri::XML::NodeSet]
