@@ -10,12 +10,11 @@ module Aranha
         class Default < ::Aranha::Parsers::Html::Node::Base
           require_sub __FILE__, include_modules: true
 
-          def join_value(node, xpath)
-            m = ''
-            node_set_value(node, xpath).each do |n|
-              m << n.text.strip
-            end
-            m
+          # @param node [Nokogiri::XML::Node]
+          # @param xpath [String]
+          # @return [Boolean]
+          def boolean_value(node, xpath)
+            node_value(node, xpath).to_bool
           end
 
           # @param node [Nokogiri::XML::Node]
