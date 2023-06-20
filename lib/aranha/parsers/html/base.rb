@@ -25,6 +25,13 @@ module Aranha
             from_string(node.to_html)
           end
 
+          # @param node [String]
+          # @param klass [String]
+          # @return [String]
+          def xpath_contains_class(klass, node = '@class')
+            "contains(concat(' ', normalize-space(#{node}), ' '), ' #{klass} ')"
+          end
+
           # @param haystack [String]
           # @param needle [String]
           # @return [String]
