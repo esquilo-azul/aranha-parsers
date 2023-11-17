@@ -70,7 +70,7 @@ module Aranha
 
       def log_parsers_dir
         return ENV[LOG_DIR_ENVVAR] if ENV[LOG_DIR_ENVVAR]
-        return ::Rails.root.join('log', 'parsers') if rails_root_exist?
+        return ::Rails.root.join('log/parsers') if rails_root_exist?
 
         nil
       end
