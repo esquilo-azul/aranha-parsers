@@ -20,8 +20,8 @@ RSpec.describe ::Aranha::Parsers::SourceTargetFixtures do
     it { expect(stub1.source).to eq(::File.join(fixtures_dir, 'stub1.source.txt')) }
     it { expect(stub1.target).to eq(::File.join(fixtures_dir, 'stub1.target.html')) }
     it { expect(stub2.source).to eq(::File.join(fixtures_dir, 'stub2.source.html')) }
-    it { expect(stub2.target).to eq(nil) }
-    it { expect(stub3.source).to eq(nil) }
+    it { expect(stub2.target).to be_nil }
+    it { expect(stub3.source).to be_nil }
     it { expect(stub3.target).to eq(::File.join(fixtures_dir, 'stub3.target.yaml')) }
   end
 end
