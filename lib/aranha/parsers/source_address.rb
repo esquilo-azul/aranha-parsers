@@ -44,7 +44,7 @@ module Aranha
       end
 
       def serialize
-        sub.serialize.strip + "\n"
+        "#{sub.serialize.strip}\n"
       end
 
       private

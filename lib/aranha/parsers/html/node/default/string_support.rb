@@ -65,7 +65,7 @@ module Aranha
               s = ''
               node.children.each do |child|
                 child_s = string_recursive(child)
-                s += ' ' + child_s if child_s.present?
+                s += " #{child_s}" if child_s.present?
               end
               sanitize_string(s)
             end

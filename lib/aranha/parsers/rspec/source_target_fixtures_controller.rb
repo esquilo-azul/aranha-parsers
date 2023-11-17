@@ -12,7 +12,7 @@ module Aranha
         def default_fixtures_dir
           ::File.join(
             ::File.dirname(spec_file),
-            ::File.basename(spec_file, '.*') + '_files'
+            "#{::File.basename(spec_file, '.*')}_files"
           )
         end
 

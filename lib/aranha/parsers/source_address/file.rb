@@ -10,7 +10,7 @@ module Aranha
 
         class << self
           def valid_source?(source)
-            source.to_s.start_with?(SCHEME + '/', '/')
+            source.to_s.start_with?("#{SCHEME}/", '/')
           end
         end
 
