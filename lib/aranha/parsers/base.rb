@@ -54,7 +54,7 @@ module Aranha
       def log_content(content, suffix = '')
         path = log_file(suffix)
 
-        File.open(path, 'wb') { |file| file.write(content) } if path
+        File.binwrite(path, content) if path
 
         content
       end
