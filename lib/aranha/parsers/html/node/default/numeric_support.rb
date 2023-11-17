@@ -102,7 +102,7 @@ module Aranha
                 m[0].delete(delimiter).to_f
               elsif required
                 raise "decimal [Separator=\"#{separator}, Delimiter=\"#{delimiter}\"] value not " \
-                  "found in \"#{s}\""
+                      "found in \"#{s}\""
               end
             end
 

@@ -53,7 +53,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
     return instance.data if instance.respond_to?(:data)
 
     raise "#{instance} has no \"data\" method. You need to implement \"#{instance}.data\" or " \
-      "\"#{self}.source_data(source_file)\""
+          "\"#{self}.source_data(source_file)\""
   end
 
   def sort_results(results)
