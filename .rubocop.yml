@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantRegexpEscape:
-  Exclude:
-  - lib/aranha/parsers/html/node/default/string_support.rb
 Style/StringConcatenation:
   Exclude:
   - lib/aranha/parsers/html/node/default/string_support.rb
