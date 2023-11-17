@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/SpecFilePathFormat:
-  Exclude:
-  - spec/lib/aranha/parsers/source_address/detect_sub_spec.rb
 Rails/FilePath:
   Exclude:
   - lib/aranha/parsers/base.rb
