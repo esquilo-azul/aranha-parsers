@@ -40,6 +40,7 @@ module Aranha
 
         def content
           request = ::EacEnvs::Http::Request.new.url(url).retry(true).follow_redirect(true)
+                      .header('user-agent', self.class.name)
           request.response.body_str
         rescue ::EacEnvs::Http::Error => e
           raise ::Aranha::Parsers::SourceAddress::FetchContentError, e.message, request
