@@ -26,6 +26,8 @@ module Aranha
         DEFAULT_FOLLOW_REDIRECT = true
         DEFAULT_HEADERS = {}.freeze
         DEFAULT_PARAMS = {}.freeze
+        USER_AGENT_KEY = 'user-agent'
+        USER_AGENT_VALUE = 'aranha-parsers'
 
         enable_simple_cache
 
@@ -74,15 +76,22 @@ module Aranha
         # @return [EacEnvs::Http::Request]
         def http_request
           r = initial_http_request
-          r = headers.if_present(r) { |v| r.headers(v) }
+          r = headers.if_present(r) { |v| r.headers(initial_headers.merge(v).to_h) }
           r = body.if_present(r) { |v| r.body_data(v) }
           r = r.follow_redirect(true) if follow_redirect?
           r
         end
 
+        # @return [Hash]
+        def initial_headers
+          ::Aranha::Parsers::SourceAddress::HashHttpBase::Headers.new
+            .value(USER_AGENT_KEY, USER_AGENT_VALUE)
+        end
+
         # @return [EacEnvs::Http::Request]
         def initial_http_request
           ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
+            .headers(initial_headers.to_h)
         end
 
         require_sub __FILE__

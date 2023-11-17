@@ -4,7 +4,7 @@ method: POST
 uri: "/"
 body:
 headers:
-  user-agent: Faraday v2.7.7
+  user-agent: aranha-parsers
   accept-encoding: gzip,deflate
   content-length: '0'
   accept: "*/*"
