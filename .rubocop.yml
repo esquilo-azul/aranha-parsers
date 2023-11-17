@@ -1,45 +1,59 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  TargetRailsVersion: 5.2
-  TargetRubyVersion: 2.7
-
-Metrics/BlockLength:
+---
+inherit_gem:
+  eac_ruby_gem_support: ".rubocop.yml"
+Gemspec/RequiredRubyVersion:
   Exclude:
-    - '**/*.gemspec'
-    - 'spec/**/*_spec.rb'
-
-Layout/LineLength:
-  Max: 100
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented_relative_to_receiver
-
-Rails/DynamicFindBy:
-  Enabled: false
-
-Rails/Output:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - aranha-parsers.gemspec
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - lib/aranha/parsers/html/node/default/numeric_support.rb
+  - lib/aranha/parsers/rspec/shared_examples/source_target_fixtures.rb
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+  - spec/lib/aranha/parsers/source_address/http_get_spec.rb
+RSpec/BeEq:
+  Exclude:
+  - spec/lib/aranha/parsers/source_target_fixtures_spec.rb
+RSpec/FilePath:
+  Exclude:
+  - spec/lib/aranha/parsers/source_address/detect_sub_spec.rb
+RSpec/SpecFilePathFormat:
+  Exclude:
+  - spec/lib/aranha/parsers/source_address/detect_sub_spec.rb
+Rails/FilePath:
+  Exclude:
+  - lib/aranha/parsers/base.rb
+Style/FileRead:
+  Exclude:
+  - lib/aranha/parsers/source_address/file.rb
+Style/FileWrite:
+  Exclude:
+  - lib/aranha/parsers/base.rb
+Style/MapToHash:
+  Exclude:
+  - lib/aranha/parsers/html/node/base.rb
+Style/OptionalBooleanParameter:
+  Exclude:
+  - lib/aranha/parsers/html/node/default/string_support.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - aranha-parsers.gemspec
+  - lib/aranha/parsers/patches/ofx_parser.rb
+  - lib/aranha/parsers/rspec/shared_examples/source_target_fixtures.rb
+  - spec/lib/aranha/parsers/rspec/shared_examples/source_target_fixtures_spec.rb
+  - spec/lib/aranha/parsers/source_address/detect_sub_spec.rb
+  - spec/lib/aranha/parsers/source_address/http_get_spec.rb
+  - spec/lib/aranha/parsers/source_address_spec.rb
+  - spec/lib/aranha/parsers/source_target_fixtures_spec.rb
+  - spec/lib/rubocop_check_spec.rb
+  - spec/spec_helper.rb
+Style/RedundantRegexpEscape:
+  Exclude:
+  - lib/aranha/parsers/html/node/default/string_support.rb
+Style/StringConcatenation:
+  Exclude:
+  - lib/aranha/parsers/html/node/default/string_support.rb
+  - lib/aranha/parsers/rspec/source_target_fixtures_controller.rb
+  - lib/aranha/parsers/source_address/file.rb
+  - lib/aranha/parsers/source_address.rb
