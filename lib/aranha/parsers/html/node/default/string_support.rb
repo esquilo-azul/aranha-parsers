@@ -35,7 +35,7 @@ module Aranha
               found ? sanitize_string(found.text) : ''
             end
 
-            def string_recursive_value(node, xpath, required = true)
+            def string_recursive_value(node, xpath, required = true) # rubocop:disable Style/OptionalBooleanParameter
               root = node_value(node, xpath)
               if root.blank?
                 return nil unless required
