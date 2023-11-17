@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/FileRead:
-  Exclude:
-  - lib/aranha/parsers/source_address/file.rb
 Style/FileWrite:
   Exclude:
   - lib/aranha/parsers/base.rb

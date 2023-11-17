@@ -23,7 +23,7 @@ module Aranha
         end
 
         def content
-          ::File.open(source, &:read)
+          ::File.read(source)
         end
       end
     end
