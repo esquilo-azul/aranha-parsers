@@ -73,11 +73,16 @@ module Aranha
 
         # @return [EacEnvs::Http::Request]
         def http_request
-          r = ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
+          r = initial_http_request
           r = headers.if_present(r) { |v| r.headers(v) }
           r = body.if_present(r) { |v| r.body_data(v) }
           r = r.follow_redirect(true) if follow_redirect?
           r
+        end
+
+        # @return [EacEnvs::Http::Request]
+        def initial_http_request
+          ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
         end
 
         require_sub __FILE__
