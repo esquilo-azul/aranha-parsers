@@ -5,14 +5,14 @@ require 'aranha/parsers/source_target_fixtures'
 require 'yaml'
 
 RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable Metrics/BlockLength
-  fixtures_controller = ::Aranha::Parsers::Rspec::SourceTargetFixturesController
+  fixtures_controller = Aranha::Parsers::Rspec::SourceTargetFixturesController
                           .new(self, spec_file)
 
   let(:fixtures_controller) { fixtures_controller }
   let(:spec_file) { spec_file }
 
   it 'fixtures directory should exist' do
-    expect(::File.directory?(fixtures_controller.fixtures_dir)).to be true
+    expect(File.directory?(fixtures_controller.fixtures_dir)).to be true
   end
 
   context 'with fixtures directory' do
@@ -21,11 +21,11 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
     end
 
     fixtures_controller.source_target_fixtures.source_target_files.each do |st|
-      context "when source file is \"#{::File.basename(st.source)}\"" do
+      context "when source file is \"#{File.basename(st.source)}\"" do
         if fixtures_controller.write_target_fixtures?
           it 'writes target data' do
             sd = sort_results(source_data(st.source))
-            basename = ::Aranha::Parsers::SourceTargetFixtures.source_target_basename(st.source)
+            basename = Aranha::Parsers::SourceTargetFixtures.source_target_basename(st.source)
             target_file = File.expand_path("../#{basename}.target#{target_file_extname}", st.source)
             File.write(target_file, target_content(sd))
           end
@@ -61,7 +61,7 @@ RSpec.shared_examples 'source_target_fixtures' do |spec_file| # rubocop:disable 
   end
 
   def target_data(target_file)
-    ::YAML.load_file(target_file)
+    YAML.load_file(target_file)
   end
 
   def target_content(data)

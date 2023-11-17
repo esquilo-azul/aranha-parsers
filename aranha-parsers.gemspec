@@ -6,7 +6,7 @@ require 'aranha/parsers/version'
 
 Gem::Specification.new do |s|
   s.name        = 'aranha-parsers'
-  s.version     = ::Aranha::Parsers::VERSION
+  s.version     = Aranha::Parsers::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'Parsers\' utilities for Ruby.'
 

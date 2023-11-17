@@ -2,11 +2,11 @@
 
 require 'aranha/parsers/source_address'
 
-RSpec.describe ::Aranha::Parsers::SourceAddress do
+RSpec.describe Aranha::Parsers::SourceAddress do
   describe '#detect_sub' do
     {
       { method: :post, url: 'http://postdata.net', params: { key1: :value1 } } => {
-        klass: ::Aranha::Parsers::SourceAddress::HashHttpBase,
+        klass: Aranha::Parsers::SourceAddress::HashHttpBase,
         url: 'http://postdata.net',
         serialization: <<~SERIALIZATION
           --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
@@ -17,7 +17,7 @@ RSpec.describe ::Aranha::Parsers::SourceAddress do
         SERIALIZATION
       },
       { method: :get, url: 'http://getdata.net', params: { headers: %w[abc] } } => {
-        klass: ::Aranha::Parsers::SourceAddress::HashHttpBase,
+        klass: Aranha::Parsers::SourceAddress::HashHttpBase,
         url: 'http://getdata.net',
         serialization: <<~SERIALIZATION
           --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
@@ -29,22 +29,22 @@ RSpec.describe ::Aranha::Parsers::SourceAddress do
         SERIALIZATION
       },
       'http://postdata.net' => {
-        klass: ::Aranha::Parsers::SourceAddress::HttpGet,
+        klass: Aranha::Parsers::SourceAddress::HttpGet,
         url: 'http://postdata.net',
         serialization: 'http://postdata.net'
       },
       'https://getdata.com.br' => {
-        klass: ::Aranha::Parsers::SourceAddress::HttpGet,
+        klass: Aranha::Parsers::SourceAddress::HttpGet,
         url: 'https://getdata.com.br',
         serialization: 'https://getdata.com.br'
       },
       'file:///postdata.net' => {
-        klass: ::Aranha::Parsers::SourceAddress::File,
+        klass: Aranha::Parsers::SourceAddress::File,
         url: 'file:///postdata.net',
         serialization: 'file:///postdata.net'
       },
       '/postdata.net' => {
-        klass: ::Aranha::Parsers::SourceAddress::File,
+        klass: Aranha::Parsers::SourceAddress::File,
         url: 'file:///postdata.net',
         serialization: 'file:///postdata.net'
       }
