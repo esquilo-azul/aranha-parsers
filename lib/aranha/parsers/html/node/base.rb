@@ -12,11 +12,11 @@ module Aranha
           end
 
           def parse(node)
-            fields.map do |f|
+            fields.to_h do |f|
               [f[0], parse_field(node, f[2], f[1])]
             rescue StandardError => e
               raise StandardError, "#{e.message}\nFields: #{f}"
-            end.to_h
+            end
           end
 
           private
