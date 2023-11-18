@@ -79,6 +79,8 @@ module Aranha
           r = r.follow_redirect(true) if follow_redirect?
           r
         end
+
+        require_sub __FILE__
       end
     end
   end
