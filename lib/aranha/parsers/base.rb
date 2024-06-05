@@ -45,8 +45,17 @@ module Aranha
         @content ||= log_content(source_address_content)
       end
 
+      # @return [String, nil]
+      def content_encoding
+        nil
+      end
+
       # @return [String]
-      delegate :content, to: :source_address, prefix: true
+      def source_address_content
+        source_address.content.then do |r|
+          content_encoding.if_present(r) { |v| r.force_encoding(v) }
+        end
+      end
 
       private
 
