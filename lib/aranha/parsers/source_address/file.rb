@@ -15,7 +15,7 @@ module Aranha
         end
 
         def initialize(source)
-          super source.to_s.gsub(/\A#{Regexp.quote(SCHEME)}/, '')
+          super(source.to_s.gsub(/\A#{Regexp.quote(SCHEME)}/, ''))
         end
 
         def url
