@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_envs-http', '~> 0.5', '>= 0.5.1'
   s.add_dependency 'eac_ruby_gem_support', '~> 0.10'
   s.add_dependency 'eac_ruby_utils', '~> 0.122'
-  s.add_dependency 'nokogiri', '~> 1.15', '>= 1.15.4'
+  s.add_dependency 'nokogiri', '~> 1.15', '>= 1.15.6'
   s.add_dependency 'ofx-parser', '~> 1.1'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.9'
