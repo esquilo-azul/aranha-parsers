@@ -38,12 +38,14 @@ module Aranha
           @final_url
         end
 
+        # @return [String]
+        # @raise [Aranha::Parsers::SourceAddress::FetchContentError]
         def content
           request = ::EacEnvs::Http::Request.new.url(url).retry(true).follow_redirect(true)
                       .header('user-agent', self.class.name)
           request.response.body_str!
         rescue ::EacEnvs::Http::Error => e
-          raise ::Aranha::Parsers::SourceAddress::FetchContentError, e.message, request
+          raise ::Aranha::Parsers::SourceAddress::FetchContentError.new(e.message, request)
         end
 
         def serialize
