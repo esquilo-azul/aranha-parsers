@@ -58,7 +58,7 @@ module Aranha
 
         def content
           request = http_request
-          request.response.body_str
+          request.response.body_str!
         rescue ::EacEnvs::Http::Error => e
           raise ::Aranha::Parsers::SourceAddress::FetchContentError, e.message, request
         end
