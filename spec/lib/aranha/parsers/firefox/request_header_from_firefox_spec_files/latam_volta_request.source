@@ -1,0 +1,24 @@
+GET /bff/air-offers/offers/search?sort=RECOMMENDED&cabinType=Economy&origin=BSB&destination=MCP&inFlightDate=null&inFrom=2022-11-15&inOfferId=null&outFlightDate=2022-11-01T16%3A20%3A00&outFrom=2022-11-01&outOfferId=591400b87afe85cd50657593cb3de9f93925b4e996ee6c6c2d2b86334e2a7f27&adult=1&child=0&infant=0&redemption=false HTTP/2
+Host: www.latamairlines.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: https://www.latamairlines.com/br/pt/oferta-voos?origin=BSB&inbound=2022-11-15T15%3A00%3A00.000Z&outbound=2022-11-01T15%3A00%3A00.000Z&destination=MCP&adt=1&chd=0&inf=0&trip=RT&cabin=Economy&redemption=false&sort=RECOMMENDED
+X-latam-App-Session-Id: 5251ed0c-08b3-42e5-89aa-918a8f3bb655
+Content-Type: application/json
+X-latam-Action-Name: search-result.flightselection.offers-search
+X-latam-Application-Name: web-air-offers
+X-latam-Client-Name: web-air-offers
+X-latam-Track-Id: ea4e3d78-a36a-4589-b764-ee406284eb84
+X-latam-Request-Id: 58825c7c-9de4-41c7-894f-c64bba62d466
+X-latam-Application-Country: BR
+X-latam-Application-Oc: br
+X-latam-Application-Lang: pt
+DNT: 1
+Connection: keep-alive
+Cookie: AWSELB=2917456D0406C2CA066AAE9E7B237A8DC1A2C762FD21EC080ABF1B316AC89CDCE30337EDA8A2CBB96929CEAB9B128E6F27730BD12037292573849CE7784F7DFF700C3E4660; AWSELBCORS=2917456D0406C2CA066AAE9E7B237A8DC1A2C762FD21EC080ABF1B316AC89CDCE30337EDA8A2CBB96929CEAB9B128E6F27730BD12037292573849CE7784F7DFF700C3E4660; _abck=6898AF1DF06EAA48C977391687894DEF~0~YAAQtPvSF38cRPKCAQAA7m4P/AgUB6gvEXXZD3umbyZIgyiBu3VDQAupXEv1QWAOWW44nAqplbmYgMVEmKvvUWdE1DPUivHE6Q0tfcK0Nt838WmTEyiS0ca0GGkPpIs03NRU+dcAyqqJ14MyN3/y4OOCmpE6Vy1xlvB1q69wJqZ+nPxmKVv0EwCE4ywNxCE/3yBMVfOKoYkOaNO1h2acFOnmh2ub1uidLSXWUz87ccElHBJsLtGd65xIC/DPfgOu9RmDdcJNo1C1uuTbxkSn+ClJFMILhwKB/Fi6rPJq2rKNQ3/rGUxBDBDGjByJCmlRHrWTTGiS4RWFaJOCITVH9yGVgfVej6PoeWhHyhOHabx4pB6qiEgBJ0Pmzh1/MdEDtZJec+ziQz+0jc8rOLJtQQ8GjWm2tp691ngghA==~-1~||-1||~-1; ak_bmsc=95201A1FFBFB534576EEAE790B7C44D1~000000000000000000000000000000~YAAQtPvSF0YcRPKCAQAABGYP/BAqn39LBrfA2pcsFtjA6Q7wkyc1iZEPqCql7zkhXi/n2HzZPBwOzvaYlZYQMGhZw1JWyusFbii4ETnki13kHZNMISsDWEbi8k/gnOptd8rsqhk2v2bcYwzQGSdiiZJ2XkVAxiBC3Vh8+Oq6sqvB8kOoYcVDwDsp3iLXYITIV8lzGe3s0VKo9hSRE63HFfEcpTHmu1m8vbJXdBEndWcOG63qp/vBBMB2OkinOSr6hIlf6t35kcNxb/h3Qk3U+nY3/LzjX0EpZMQtIwZyJ0GSLlMQrTwBcyoG+jmi4+/quw3aGjEFGh1TqdoFVhZU2cLgmdiPebQgKegW7aKrFWBAcHMNtZD1Di5kUbwdMwIeG7rOC9QsPX61TrdR7ufn2zSlJG6xcq2ZZyONnCoxrCOoNwDfKFvf0mZP0PGNoCSwNwhRAWe151eJcw==; bm_sz=BCB974CC49B275FBC8C02473712ACF0F~YAAQtPvSF3USRPKCAQAAoy8N/BBoVb3UXBQalTowGdr0lzEddg5LmBcZ2/SXQ7n5Re1do5QGzezHKpWKDBkIMAiRM5eyVJfP1SMuWnQDnFRYTpVZn5aww6OEZMMaUJmGyH9JYWJJm8TiymM4hLOYpcpjoK6StjcN7KCkF/BZbHid0ZMK3wln6P+qMpGDVFvZy4dHK5ZYI03Wvdu80gxnPNjbs7VEqCi3qkRFaLte07IYFb6hpTr6um2QPszutVNi3m2tzwZi8+GEXtKvRanj91PJ7NwSB83KosY/TKCkmXIm3LLTYTHH/RBc~3556933~3421238; bm_sv=32376B0AF86B273C1D4EA62E15C43079~YAAQtPvSFzkoRPKCAQAA9qwR/BASii5/J/vCCdoxEl+llnfOaAWYQgQXq/aswW5Go8NAmbu5t5bLRrkdRjEqymVPV8Kv8W8aqMt9oi7hFy5JrIQywXW1Ks4/YZDbXdlwP6wpLmP38ZkTvzj4EZlBEbmpZHgbDDQtXCfrzPCTPwKdqj0oOpGL9rtOH1u0rX/1AhA0Sw+0pI2JRxoTahZlKX7dxtGaP9hNSRk70t+zXYNsHqnCQ45YW0S3qNv5TwVG7x1P7R8iXIo=~1; _xp_application_lang=pt; _xp_application_country=br; _xp_session=s%3A61I2Y5H7KHBW54GoAcpglGtn-wm5X2th.l4GfDE%2Fe8KT2ioIcpG%2BdmHlEZIb0hZglW%2B%2BzcyKq4E8; bm_mi=84E7CEC695AA57B2B5D39360BF4E5D66~YAAQtPvSF3AWRPKCAQAApRcO/BC5QSYG3Lf6kfsvcej9pL9ivSg6SQkIDAHpcBFQUF/trOnYyfHBowa4deBDg+wB2vHVXKrkaMXoue8MFIDDcI9hDURjl+qU/LZVIGMlJdM2DQ7T+/jzR25STVoPtbbSJKRi+Z2GAudS658W8rP/6jrDFnBP1jlRfxQc2ctOJUgY4B3QYjdf74A5CDw/Sg+hMG1Fa4lJtQ6AApN4/D3Cmx7Nq151S+JQpYdfuqxjZWSt8BUvJrcGTc//YWyMvdqXjG/YQFh4bGxmCZmk77W3D+7Mf7fEF2HAMqhbRoWimxhtJa+YBHJRkG+vfOitxl2Q2vZB~1; mdLogger=false; kampyle_userid=67af-755f-1ca8-7428-6a8a-a1d3-c017-a271; kampyleUserSession=1662086110213; kampyleSessionPageCounter=3; kampyleUserSessionsCount=1
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+TE: trailers
