@@ -25,7 +25,7 @@ module Aranha
 
         # @return [Addressable::URI]
         def uri
-          "#{SCHEME}#{source}".to_uri
+          source_as_uri? ? source_as_uri : "#{SCHEME}#{source}".to_uri
         end
       end
     end

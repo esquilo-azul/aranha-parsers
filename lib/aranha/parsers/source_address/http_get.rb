@@ -46,7 +46,7 @@ module Aranha
 
         # @return [Addressable::URI]
         def uri
-          ::Addressable::URI.parse(source)
+          source_as_uri
         end
       end
     end

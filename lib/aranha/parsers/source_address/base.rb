@@ -42,6 +42,16 @@ module Aranha
         def source_as_hash?
           source.is_a?(::Hash)
         end
+
+        # @|return [Hash]
+        def source_as_uri
+          source_as_uri? ? source.to_uri : raise('source is not a URI')
+        end
+
+        # @return [Boolean]
+        def source_as_uri?
+          source.to_uri.scheme.present?
+        end
       end
     end
   end
