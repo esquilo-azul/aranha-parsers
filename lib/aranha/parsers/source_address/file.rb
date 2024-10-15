@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'aranha/parsers/source_address/http_get'
+require 'eac_ruby_utils/core_ext'
 
 module Aranha
   module Parsers
@@ -18,12 +19,13 @@ module Aranha
           super(source.to_s.gsub(/\A#{Regexp.quote(SCHEME)}/, ''))
         end
 
-        def url
-          "#{SCHEME}#{source}"
-        end
-
         def content
           ::File.read(source)
+        end
+
+        # @return [Addressable::URI]
+        def uri
+          "#{SCHEME}#{source}".to_uri
         end
       end
     end

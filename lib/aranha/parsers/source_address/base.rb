@@ -22,6 +22,16 @@ module Aranha
         def content
           raise_abstract_method __method__
         end
+
+        # @return [Addressable::URI]
+        def uri
+          raise_abstract_method __method__
+        end
+
+        # @return [String]
+        def url
+          uri.to_s
+        end
       end
     end
   end

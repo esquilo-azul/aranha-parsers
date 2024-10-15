@@ -25,10 +25,6 @@ module Aranha
           self.class == other.class && source == other.source
         end
 
-        def url
-          source
-        end
-
         def final_url
           content unless @final_url
           @final_url
@@ -46,6 +42,11 @@ module Aranha
 
         def serialize
           url
+        end
+
+        # @return [Addressable::URI]
+        def uri
+          ::Addressable::URI.parse(source)
         end
       end
     end

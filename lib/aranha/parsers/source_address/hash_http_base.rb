@@ -45,10 +45,6 @@ module Aranha
           param(:headers, DEFAULT_HEADERS)
         end
 
-        def url
-          source.fetch(:url)
-        end
-
         def serialize
           source.to_yaml
         end
@@ -66,6 +62,11 @@ module Aranha
 
         def params
           source[:params].if_present(DEFAULT_PARAMS)
+        end
+
+        # @return [Addressable::URI]
+        def uri
+          ::Addressable::URI.parse(source.fetch(:url))
         end
 
         private
