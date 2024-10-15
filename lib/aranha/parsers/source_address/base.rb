@@ -32,6 +32,16 @@ module Aranha
         def url
           uri.to_s
         end
+
+        # @return [Hash]
+        def source_as_hash
+          source_as_hash? ? source.with_indifferent_access : raise('source is not a Hash')
+        end
+
+        # @return [Boolean]
+        def source_as_hash?
+          source.is_a?(::Hash)
+        end
       end
     end
   end

@@ -31,8 +31,6 @@ module Aranha
 
         enable_simple_cache
 
-        common_constructor :source, super_args: -> { [source.with_indifferent_access] }
-
         def body
           param(:body, DEFAULT_BODY)
         end
@@ -46,7 +44,7 @@ module Aranha
         end
 
         def serialize
-          source.to_yaml
+          source_as_hash.to_yaml
         end
 
         def content
@@ -57,16 +55,16 @@ module Aranha
         end
 
         def param(key, default_value)
-          source[key] || params[key] || default_value
+          source_as_hash[key] || params[key] || default_value
         end
 
         def params
-          source[:params].if_present(DEFAULT_PARAMS)
+          source_as_hash[:params].if_present(DEFAULT_PARAMS)
         end
 
         # @return [Addressable::URI]
         def uri
-          ::Addressable::URI.parse(source.fetch(:url))
+          ::Addressable::URI.parse(source_as_hash.fetch(:url))
         end
 
         private
