@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require 'addressable'
-require 'aranha/parsers/source_address/fetch_content_error'
+require 'aranha/parsers/source_address/base'
 require 'eac_envs/http/error'
 require 'eac_envs/http/request'
 
 module Aranha
   module Parsers
     class SourceAddress
-      class HttpGet
+      class HttpGet < ::Aranha::Parsers::SourceAddress::Base
         class << self
           def location_uri(source_uri, location)
             ::Addressable::URI.join(source_uri, location).to_s
@@ -19,11 +19,7 @@ module Aranha
           end
         end
 
-        attr_reader :source
-
-        def initialize(source)
-          @source = source.to_s
-        end
+        common_constructor :source, super_args: -> { [source.to_s] }
 
         def ==(other)
           self.class == other.class && source == other.source

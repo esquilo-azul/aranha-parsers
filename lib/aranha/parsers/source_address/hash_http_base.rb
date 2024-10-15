@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'aranha/parsers/source_address/fetch_content_error'
-require 'aranha/parsers/source_address/hash_http_base'
+require 'aranha/parsers/source_address/base'
 require 'eac_envs/http/error'
 require 'eac_envs/http/request'
 require 'eac_ruby_utils/core_ext'
@@ -10,7 +10,7 @@ require 'yaml'
 module Aranha
   module Parsers
     class SourceAddress
-      class HashHttpBase
+      class HashHttpBase < ::Aranha::Parsers::SourceAddress::Base
         class << self
           def http_method
             const_get 'HTTP_METHOD'
@@ -31,10 +31,7 @@ module Aranha
 
         enable_simple_cache
 
-        common_constructor :source do
-          self.source = source.with_indifferent_access
-        end
-        compare_by :source
+        common_constructor :source, super_args: -> { [source.with_indifferent_access] }
 
         def body
           param(:body, DEFAULT_BODY)
