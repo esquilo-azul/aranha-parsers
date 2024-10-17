@@ -1,0 +1,6 @@
+---
+:klass: !ruby/class 'Aranha::Parsers::SourceAddress::File'
+:url: file:///postdata.net
+:serialization: file:///postdata.net
+:deserialization: !ruby/object:Aranha::Parsers::SourceAddress::File
+  source: "/postdata.net"

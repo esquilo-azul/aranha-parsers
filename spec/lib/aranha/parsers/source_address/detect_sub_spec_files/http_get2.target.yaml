@@ -1,0 +1,6 @@
+---
+:klass: !ruby/class 'Aranha::Parsers::SourceAddress::HttpGet'
+:url: https://getdata.com.br
+:serialization: https://getdata.com.br
+:deserialization: !ruby/object:Aranha::Parsers::SourceAddress::HttpGet
+  source: https://getdata.com.br

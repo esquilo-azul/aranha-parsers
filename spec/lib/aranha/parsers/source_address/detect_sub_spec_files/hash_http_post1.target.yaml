@@ -1,0 +1,15 @@
+---
+:klass: !ruby/class 'Aranha::Parsers::SourceAddress::HashHttpPost'
+:url: http://postdata.net
+:serialization: |
+  --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  method: :post
+  url: http://postdata.net
+  params: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    key1: :value1
+:deserialization: !ruby/object:Aranha::Parsers::SourceAddress::HashHttpPost
+  source: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    method: :post
+    url: http://postdata.net
+    params: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+      key1: :value1

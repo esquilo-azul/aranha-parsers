@@ -1,0 +1,17 @@
+---
+:klass: !ruby/class 'Aranha::Parsers::SourceAddress::HashHttpGet'
+:url: http://getdata.net
+:serialization: |
+  --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  method: :get
+  url: http://getdata.net
+  params: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    headers:
+    - abc
+:deserialization: !ruby/object:Aranha::Parsers::SourceAddress::HashHttpGet
+  source: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    method: :get
+    url: http://getdata.net
+    params: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+      headers:
+      - abc
