@@ -10,14 +10,6 @@ module Aranha
         common_constructor :source
         compare_by :source
 
-        class << self
-          # @param source [Object]
-          # @return [Boolean]
-          def valid_source?(source) # rubocop:disable Lint/UnusedMethodArgument
-            raise_abstract_method __method__
-          end
-        end
-
         # @return [String]
         def content
           raise_abstract_method __method__
@@ -51,6 +43,11 @@ module Aranha
         # @return [Boolean]
         def source_as_uri?
           source.to_uri.scheme.present?
+        end
+
+        # @return [Boolean]
+        def valid?
+          raise_abstract_method __method__
         end
       end
     end

@@ -15,11 +15,6 @@ module Aranha
           def http_method
             const_get 'HTTP_METHOD'
           end
-
-          def valid_source?(source)
-            source.is_a?(::Hash) &&
-              source.with_indifferent_access[:method].to_s.downcase.strip == http_method.to_s
-          end
         end
 
         DEFAULT_BODY = ''
@@ -65,6 +60,12 @@ module Aranha
         # @return [Addressable::URI]
         def uri
           ::Addressable::URI.parse(source_as_hash.fetch(:url))
+        end
+
+        # @return [Boolean]
+        def valid?
+          source_as_hash? &&
+            source_as_hash[:method].to_s.downcase.strip == self.class.http_method.to_s
         end
 
         private

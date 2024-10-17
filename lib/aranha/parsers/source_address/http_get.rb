@@ -13,10 +13,6 @@ module Aranha
           def location_uri(source_uri, location)
             ::Addressable::URI.join(source_uri, location).to_s
           end
-
-          def valid_source?(source)
-            source.to_s =~ %r{\Ahttps?://}
-          end
         end
 
         common_constructor :source, super_args: -> { [source.to_s] }
@@ -47,6 +43,11 @@ module Aranha
         # @return [Addressable::URI]
         def uri
           source_as_uri
+        end
+
+        # @return [Boolean]
+        def valid?
+          source.to_s =~ %r{\Ahttps?://}
         end
       end
     end

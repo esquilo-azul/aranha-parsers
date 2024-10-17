@@ -20,8 +20,10 @@ module Aranha
         def detect_sub(source)
           return source.sub if source.is_a?(self)
 
-          SUBS.each do |sub|
-            return sub.new(source) if sub.valid_source?(source)
+          SUBS.each do |sub_class|
+            sub_class.new(source).then do |sub|
+              return sub if sub.valid?
+            end
           end
           raise "No content fetcher found for source \"#{source}\""
         end
