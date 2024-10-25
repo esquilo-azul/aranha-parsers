@@ -27,4 +27,10 @@ RSpec.describe Aranha::Parsers::SourceAddress, '#content' do
   def source_url_get(source)
     (source.is_a?(Hash) ? source.fetch(:url) : source).to_uri
   end
+
+  def target_data(target_file)
+    r = EacRubyUtils::Yaml.load_file(target_file)
+    r.fetch('headers')['host'] = http_server.root_url.authority if r.fetch('headers').key?('host')
+    r
+  end
 end
