@@ -37,6 +37,13 @@ module Aranha
               parse_decimal_dot(node, xpath, false)
             end
 
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Integer]
+            def integer_comma_value(node, xpath)
+              decimal_comma_value(node, xpath).to_i
+            end
+
             def integer_value(node, xpath)
               r = string_value(node, xpath)
               return nil if r.blank?
