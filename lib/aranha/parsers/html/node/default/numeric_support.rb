@@ -58,6 +58,13 @@ module Aranha
               decimal_dot_value(node, xpath).to_i
             end
 
+            # @param node [Nokogiri::XML::Element]
+            # @param xpath [String]
+            # @return [Integer]
+            def integer_dot_optional_value(node, xpath)
+              decimal_dot_optional_value(node, xpath).to_i
+            end
+
             def integer_value(node, xpath)
               r = string_value(node, xpath)
               return nil if r.blank?
