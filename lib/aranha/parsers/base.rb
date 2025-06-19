@@ -3,8 +3,6 @@
 require 'open-uri'
 require 'fileutils'
 
-require 'eac_ruby_utils/fs/temp'
-
 module Aranha
   module Parsers
     class Base

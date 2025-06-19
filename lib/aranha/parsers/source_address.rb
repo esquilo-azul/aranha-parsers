@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/module/delegation'
-require 'eac_ruby_utils/core_ext'
+
 require 'yaml'
 
 module Aranha

@@ -32,7 +32,5 @@ module Aranha
   end
 end
 
-require 'eac_ruby_utils/patch'
-
 EacRubyUtils.patch(OfxParser::OfxParser, Aranha::Parsers::Patches::OfxParser::OfxParser)
 EacRubyUtils.patch(OfxParser::Transaction, Aranha::Parsers::Patches::OfxParser::Transaction)

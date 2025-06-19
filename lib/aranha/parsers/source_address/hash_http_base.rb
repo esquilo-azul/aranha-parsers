@@ -2,7 +2,7 @@
 
 require 'eac_envs/http/error'
 require 'eac_envs/http/request'
-require 'eac_ruby_utils/core_ext'
+
 require 'yaml'
 
 module Aranha
