@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/firefox/request_header_from_firefox'
-
 RSpec.describe Aranha::Parsers::Firefox::RequestHeaderFromFirefox do
   include_examples 'source_target_fixtures', __FILE__
 

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/require_sub'
+require 'eac_ruby_utils'
+EacRubyUtils::RootModuleSetup.perform __FILE__
 
 module Aranha
   module Parsers
-    ::EacRubyUtils.require_sub __FILE__
   end
 end
+
+require 'aranha'
+require 'eac_envs/http'

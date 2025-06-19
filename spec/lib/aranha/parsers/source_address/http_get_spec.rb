@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/source_address/http_get'
-
 RSpec.describe Aranha::Parsers::SourceAddress::HttpGet do
   SOURCE_URI = 'http://example.net/abc' # rubocop:disable Lint/ConstantDefinitionInBlock, RSpec/LeakyConstantDeclaration
 

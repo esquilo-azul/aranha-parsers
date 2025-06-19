@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/source_address'
-
 RSpec.describe Aranha::Parsers::SourceAddress, '#detect_sub' do
   include_examples 'source_target_fixtures', __FILE__
 

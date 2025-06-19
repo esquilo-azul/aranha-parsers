@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/source_address'
-require 'eac_envs/http/rspec/echo_server'
-require 'eac_ruby_utils/yaml'
-
 RSpec.describe Aranha::Parsers::SourceAddress, '#content' do
   let(:http_server) { EacEnvs::Http::Rspec::EchoServer.http }
 
