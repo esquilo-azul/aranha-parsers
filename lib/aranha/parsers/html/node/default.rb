@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/html/node/base'
 require 'eac_ruby_utils/core_ext'
 
 module Aranha

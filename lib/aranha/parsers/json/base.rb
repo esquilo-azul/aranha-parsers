@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/base'
 require 'json'
 
 module Aranha

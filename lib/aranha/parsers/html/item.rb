@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'aranha/parsers/html/base'
-
 module Aranha
   module Parsers
     module Html

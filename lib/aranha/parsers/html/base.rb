@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'nokogiri'
-require 'aranha/parsers/base'
-require 'aranha/parsers/html/node/default'
 
 module Aranha
   module Parsers

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'addressable'
-require 'aranha/parsers/source_address/base'
+
 require 'eac_envs/http/error'
 require 'eac_envs/http/request'
 

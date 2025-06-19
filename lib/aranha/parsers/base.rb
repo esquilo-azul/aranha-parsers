@@ -2,7 +2,7 @@
 
 require 'open-uri'
 require 'fileutils'
-require 'aranha/parsers/source_address'
+
 require 'eac_ruby_utils/fs/temp'
 
 module Aranha
