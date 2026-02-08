@@ -7,8 +7,6 @@ require 'yaml'
 module Aranha
   module Parsers
     class SourceAddress
-      require_sub __FILE__
-
       class << self
         SUBS = [
           ::Aranha::Parsers::SourceAddress::HashHttpGet,

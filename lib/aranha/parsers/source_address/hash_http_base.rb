@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_envs/http/error'
-require 'eac_envs/http/request'
-
 require 'yaml'
 
 module Aranha
@@ -88,8 +85,6 @@ module Aranha
           ::EacEnvs::Http::Request.new.verb(self.class.http_method).url(url)
             .headers(initial_headers.to_h)
         end
-
-        require_sub __FILE__
       end
     end
   end

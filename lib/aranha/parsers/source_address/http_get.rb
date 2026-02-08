@@ -2,9 +2,6 @@
 
 require 'addressable'
 
-require 'eac_envs/http/error'
-require 'eac_envs/http/request'
-
 module Aranha
   module Parsers
     class SourceAddress
