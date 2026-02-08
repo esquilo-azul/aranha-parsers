@@ -10,7 +10,7 @@ module Aranha
               s = string_value(node, xpath)
               return '' unless s
 
-              m = /"([^\"]+)"/.match(s)
+              m = /"([^"]+)"/.match(s)
               return m[1] if m
 
               ''

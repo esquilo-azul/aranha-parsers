@@ -106,7 +106,7 @@ module Aranha
 
             def parse_float(node, xpath, required)
               s = string_value(node, xpath)
-              m = /\d+(?:[\.\,](\d+))?/.match(s)
+              m = /\d+(?:[.,](\d+))?/.match(s)
               if m
                 m[0].delete('.').tr(',', '.').to_f
               elsif required
