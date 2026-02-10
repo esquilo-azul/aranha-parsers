@@ -27,7 +27,7 @@ module Aranha
         end
 
         def deserialize(string)
-          new(string =~ %r{\A[a-z]+://} ? string.strip : ::YAML.load(string)) # rubocop:disable Security/YAMLLoad
+          new(string =~ %r{\A[a-z]+://} ? string.strip : ::YAML.unsafe_load(string))
         end
 
         def from_file(path)
