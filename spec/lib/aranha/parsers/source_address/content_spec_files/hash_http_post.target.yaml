@@ -9,4 +9,3 @@ headers:
   content-length: '0'
   accept: "*/*"
   host: localhost:8080
-  content-type: application/x-www-form-urlencoded
