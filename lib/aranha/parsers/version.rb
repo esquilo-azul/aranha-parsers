@@ -2,6 +2,6 @@
 
 module Aranha
   module Parsers
-    VERSION = '0.26.3'
+    VERSION = '0.27.0'
   end
 end
