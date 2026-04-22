@@ -5,7 +5,8 @@ module Aranha
     module Ofx
       class Data
         class Transaction
-          attr_accessor :type, :date, :amount, :fit_id, :check_number, :sic, :memo, :payee
+          attr_accessor :type, :date, :amount, :fit_id, :check_number, :sic, :memo, :payee,
+                        :currate, :cursym
 
           include ::Aranha::Parsers::Ofx::Data::MonetarySupport
           extend ::Aranha::Parsers::Ofx::Data::MonetaryClassSupport

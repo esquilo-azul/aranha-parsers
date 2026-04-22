@@ -161,7 +161,7 @@ module Aranha
         end
 
         # for credit and bank transactions.
-        def self.build_transaction(t) # rubocop:disable Metrics/AbcSize, Naming/MethodParameterName
+        def self.build_transaction(t) # rubocop:disable Metrics/AbcSize, Naming/MethodParameterName, Metrics/MethodLength
           transaction = ::Aranha::Parsers::Ofx::Data::Transaction.new
           transaction.type = (t / 'TRNTYPE').inner_text
           transaction.date = parse_datetime((t / 'DTPOSTED').inner_text)
@@ -171,6 +171,7 @@ module Aranha
           transaction.memo = (t / 'MEMO').inner_text
           transaction.sic = (t / 'SIC').inner_text
           transaction.check_number = (t / 'CHECKNUM').inner_text if transaction.type == :CHECK
+          transaction.currate = (t / 'CURRENCY/CURRATE').inner_text
           transaction
         end
 
