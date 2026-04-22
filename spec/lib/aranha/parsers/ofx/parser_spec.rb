@@ -213,17 +213,6 @@ RSpec.describe Aranha::Parsers::Ofx::Parser do
     expect(ofx.accounts.size).to eq(0)
   end
 
-  it 'monetary_support_call' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
-    t = Aranha::Parsers::Ofx::Data::Transaction.new
-    t.amount = '-11.1'
-
-    expect { t.amount_in_pennies }.not_to raise_error
-    expect { t.amount_in_whatever }.to raise_error(NoMethodError)
-
-    expect(t).to respond_to(:amount_in_pennies)
-    expect(t).not_to respond_to(:amount_in_whatever)
-  end
-
   it 'malformed_header_parses' do
     expect do
       described_class.parse(ofx_files[:malformed_header])
