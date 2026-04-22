@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'hpricot'
-
 module Aranha
   module Parsers
     module Ofx
@@ -35,11 +33,6 @@ module Aranha
             e.split(':', 2)
           end.flatten]
 
-          body.gsub!(/>\s+</m, '><')
-          body.gsub!(/\s+</m, '<')
-          body.gsub!(/>\s+/m, '>')
-          body.gsub!(/<(\w+?)>([^<]+)/m, '<\1>\2</\1>')
-
           [header, body]
         end
 
@@ -72,7 +65,7 @@ module Aranha
         end
 
         def self.parse_body(body) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-          doc = Hpricot.XML(body)
+          doc = ::Aranha::Parsers::Ofx::BodyParser.new(body).parse
 
           ofx = ::Aranha::Parsers::Ofx::Data.new
 

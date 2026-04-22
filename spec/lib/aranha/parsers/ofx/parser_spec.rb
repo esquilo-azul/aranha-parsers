@@ -16,15 +16,6 @@ RSpec.describe Aranha::Parsers::Ofx::Parser do
     r
   end
 
-  it 'pre_process strips spaces' do # rubocop:disable RSpec/MultipleExpectations
-    _, body = described_class.pre_process(ofx_files[:with_spaces])
-
-    expect(body).not_to match(/>\s+.*?</)
-    expect(body).not_to match(/>.*?\s+</)
-    expect(body).not_to match(/>\s+</)
-    expect(body).to match('The user is authentic; operation succeeded.')
-  end
-
   it 'pre_process header' do
     header, = described_class.pre_process(ofx_files[:with_spaces])
 
