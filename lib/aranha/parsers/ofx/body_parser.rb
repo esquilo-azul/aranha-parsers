@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'hpricot'
+require 'nokogiri'
 
 module Aranha
   module Parsers
@@ -8,7 +8,7 @@ module Aranha
       class BodyParser
         class << self
           # @param content [String]
-          # @return [Hpricot::Doc]
+          # @return [Nokogiri::XML::Document]
           def parse(content)
             new(content).parse
           end
@@ -16,17 +16,14 @@ module Aranha
 
         common_constructor :content
 
-        # @return [Hpricot::Doc]
+        # @return [Nokogiri::XML::Document]
         def parse
-          ::Hpricot.XML(pre_process_content)
-        end
-
-        # @return [String]
-        def pre_process_content
-          content.gsub(/>\s+</m, '><')
-            .gsub(/\s+</m, '<')
-            .gsub(/>\s+/m, '>')
-            .gsub(/<(\w+?)>([^<]+)/m, '<\1>\2</\1>')
+          r = ::Nokogiri::XML(content) do |config|
+            config.strict
+            config.noblanks
+          end
+          r.singleton_class.prepend(::Aranha::Parsers::Ofx::BodyParser::NodeExtension)
+          r
         end
       end
     end

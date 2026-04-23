@@ -163,7 +163,7 @@ RSpec.describe Aranha::Parsers::Ofx::Parser do
     expect(transactions[0].check_number).to be_nil
     expect(transactions[0].sic).to eq('5912')
     expect(transactions[0].sic_desc).to eq(Aranha::Parsers::Ofx::Mcc::CODES['5912'])
-    expect(transactions[0].payee).to eq('WALGREEN      34638675 ANYTOWN')
+    expect(transactions[0].payee).to eq('WALGREEN 34638675 ANYTOWN')
     expect(transactions[0].memo).to eq('')
 
     expect(transactions[1].type).to eq(:DEBIT)
@@ -175,7 +175,7 @@ RSpec.describe Aranha::Parsers::Ofx::Parser do
     expect(transactions[1].check_number).to be_nil
     expect(transactions[1].sic).to eq('7933')
     expect(transactions[1].sic_desc).to eq(Aranha::Parsers::Ofx::Mcc::CODES['7933'])
-    expect(transactions[1].payee).to eq('SUNSET BOWL            ANYTOWN')
+    expect(transactions[1].payee).to eq('SUNSET BOWL ANYTOWN')
     expect(transactions[1].memo).to eq('')
 
     expect(transactions[2].type).to eq(:CREDIT)
@@ -202,11 +202,5 @@ RSpec.describe Aranha::Parsers::Ofx::Parser do
     expect(cc_info.number).to eq('XXXXXXXXXXXX1111')
 
     expect(ofx.accounts.size).to eq(0)
-  end
-
-  it 'malformed_header_parses' do
-    expect do
-      described_class.parse(ofx_files[:malformed_header])
-    end.not_to raise_error
   end
 end

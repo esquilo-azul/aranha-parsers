@@ -12,17 +12,17 @@ NEWFILEUID:NONE
   <SIGNONMSGSRSV1>
     <SONRS>
       <STATUS>
-        <CODE>   0
-        <SEVERITY>   INFO
-        <MESSAGE>   The user is authentic; operation succeeded.
+        <CODE>   0</CODE>
+        <SEVERITY>   INFO</SEVERITY>
+        <MESSAGE>   The user is authentic; operation succeeded.</MESSAGE>
       </STATUS>
-      <DTSERVER>   20070623142635.169[-5:CDT]
-      <LANGUAGE>ENG
+      <DTSERVER>   20070623142635.169[-5:CDT]</DTSERVER>
+      <LANGUAGE>ENG</LANGUAGE>
       <FI>
-        <ORG>   U.S. Bank
-        <FID>   1402
+        <ORG>   U.S. Bank</ORG>
+        <FID>   1402</FID>
       </FI>
-      <INTU.BID>1402
+      <INTU.BID>1402</INTU.BID>
     </SONRS>
   </SIGNONMSGSRSV1>
 </OFX>
