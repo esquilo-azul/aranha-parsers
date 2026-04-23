@@ -28,6 +28,8 @@ module Aranha
         # * body as an evily pre-processed string ready for parsing by hpricot.
         def self.pre_process(ofx)
           header, body = ofx.split(/\n{2,}|:?<OFX>/, 2)
+          body = "#{body.gsub("\r\n", "\n").strip}\n"
+          body = "<OFX>\n#{body}" unless body.upcase.start_with?('<OFX>')
 
           header = Hash[*header.gsub(/^\r?\n+/, '').split("\r\n").collect do |e|
             e.split(':', 2)
