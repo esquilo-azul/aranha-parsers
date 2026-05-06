@@ -19,6 +19,14 @@ module Aranha
             def node_value(node, xpath)
               node.at_xpath(xpath)
             end
+
+            # @param node [Nokogiri::XML::Node]
+            # @param xpath [String]
+            # @return [String]
+            def node_xml_value(node, xpath)
+              found = node_value(node, xpath)
+              found ? found.to_xml : ''
+            end
           end
         end
       end
