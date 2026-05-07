@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Parsers\' utilities for Ruby.'
 
   s.files = Dir['{lib}/**/*']
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.2'
 
   s.add_dependency 'activesupport', '>= 4.0.0'
   s.add_dependency 'addressable', '~> 2.9'
